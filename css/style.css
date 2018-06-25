@@ -491,3 +491,14 @@ header[role="banner"] #mobile-menu-toggle {
     display: block;
     margin-bottom: 0;
 }
+
+
+/******************************************************* FOOTER *******************************************************/
+
+.ancor {
+    width: 100%;
+    background: #2db999;
+    color: #fff;
+    padding: 15px 0;
+    margin-top: 20px;
+}

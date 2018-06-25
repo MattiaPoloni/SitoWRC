@@ -50,7 +50,7 @@
 
 </main>
 
-<?php include('common/footer.html') ?>
+<?php include('common/footer.php') ?>
 
 </body>
 
