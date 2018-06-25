@@ -8,6 +8,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/slide.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
     <title>HomePage</title>
     <meta name="description" content="Descrizione sommaria.">
@@ -18,36 +19,38 @@
 
 <main>
 
+    <div class="slider">
+        <ul>
+            <li>
+                <input type="radio" id="slide1" name="slide" checked>
+                <label for="slide1"></label>
+                <div class="cont-img" alt="panel 1"></div>
+            </li>
+            <li>
+                <input type="radio" id="slide2" name="slide">
+                <label for="slide2"></label>
+                <div class="cont-img-1" alt="panel 1"></div>
+            </li>
+            <li>
+                <input type="radio" id="slide3" name="slide">
+                <label for="slide3"></label>
+                <div class="cont-img" alt="panel 1"></div>
+            </li>
+            <li>
+                <input type="radio" id="slide4" name="slide">
+                <label for="slide4"></label>
+                <div class="cont-img-1" alt="panel 1"></div>
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        Top 3 Piloti
+        News
+    </div>
 
-    <ul class="slider">
-        <li>
-            <input type="radio" id="slide1" name="slide" checked>
-            <label for="slide1"></label>
-            <img src="media/gitS.png" alt="Panel 1">
-        </li>
-        <li>
-            <input type="radio" id="slide2" name="slide">
-            <label for="slide2"></label>
-            <img src="media/nb.jpg" alt="Panel 2">
-        </li>
-        <li>
-            <input type="radio" id="slide3" name="slide">
-            <label for="slide3"></label>
-            <img src="media/gitS.png" alt="Panel 3">
-        </li>
-        <li>
-            <input type="radio" id="slide4" name="slide">
-            <label for="slide4"></label>
-            <img src="media/nb.jpg" alt="Panel 4">
-        </li>
-    </ul>
-
-    Top 3 Piloti
-    News
 </main>
 
 <?php include('common/footer.html') ?>
-Link vari + Amministratori.
 
 </body>
 
