@@ -46,6 +46,15 @@
     <div class="container">
         Top 3 Piloti
         News
+        <br>
+        <br>
+        <br>
+        <p>TEST GALLERY (ditemi se vi piace)</p>
+        <a href="TestGallery/testGalleryPiloti.html">link</a>
+        <br>
+        <br>
+        <br>
+
     </div>
 
 </main>
