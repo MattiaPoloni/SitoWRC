@@ -15,7 +15,7 @@
 <?php include('common/header.html') ?>
 <?php include('common/menu.html') ?>
 <?php include('common/footer.html') ?>
-
+<?php include "connessione.php"; ?>
 
 Inserimento dei risultati:
 
@@ -26,12 +26,28 @@ Inserimento dei risultati:
         <option value="3">gara3</option>
     </select>
 
-    <select name="pilota">
-        <option value="Tomare">Tomare</option>
-        <option value="Olgierd">Olgierd</option>
-        <option value="Von everec">Von everec</option>
-    </select>
+    <?php
+    /**
+     * Fatto per esempio un po' a caso.
+     */
 
+    $selecPiloti = "SELECT nome FROM Pilota;";
+
+    $name = $connessione->query($selecPiloti);
+    if ($name->num_rows > 0) :
+        // output data of each row
+        ?>
+        <select name="pilota">
+            <?php
+            while ($row = $name->fetch_assoc()) : ?>
+                <option value="<?php $row["nome"] ?>"><?php echo $row["nome"] ?></option>
+            <?php endwhile; ?>
+        </select>
+    <?php else :
+        echo "0 results";
+    endif;
+    ?>
+    <?php /** Se le cose sono fisse --> esempio le posizioni ok farle così */ ?>
     <select name="posizione">
         <option value="1">1°</option>
         <option value="2">2°</option>
@@ -49,7 +65,6 @@ Inserimento dei risultati:
 </form>
 
 <?php
-include "connessione.php";
 //var_dump($connessione);
 if (isset($_POST['save'])) {
 
@@ -63,13 +78,14 @@ if (isset($_POST['save'])) {
 
     $sql = "INSERT INTO Gara (id, giorno, id_pista)
     VALUES(20,2018-01-25,1);"; //funziona con gli id giusti
-}
-$q = $connessione->query($sql);
-if (!$q) {
-    echo "Errore db";
-    exit();
-} else {
-    echo "Tutto bene";
+
+    $q = $connessione->query($sql);
+    if (!$q) {
+        echo "Errore db";
+        exit();
+    } else {
+        echo "Tutto bene";
+    }
 }
 $connessione->close();
 
