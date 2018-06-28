@@ -1,4 +1,21 @@
-<html>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <!-- meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/slide.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+    <title>HomePage</title>
+    <meta name="description" content="Descrizione sommaria.">
+</head>
+<body>
+<?php include('common/header.html');
+    include('common/menu.html'); ?>
 <a href="classifica.php?cosa=piloti">Classifica Piloti</a>
 <a href="classifica.php?cosa=costruttori">Classifica Costruttori</a>
 <?php
@@ -43,4 +60,6 @@
     }
     $connessione->close();
 ?>
+</body>
+<?php include('common/footer.php'); ?>
 </html>
