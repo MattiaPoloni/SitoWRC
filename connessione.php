@@ -1,36 +1,20 @@
 <?php
-
-class Open extends data\Data
-{
-    public function connect()
-    {
-        $connessione = new mysqli($this->getData(), $this->getUser(), $this->getPass(), $this->getDb());
-        if($connessione->connect_errno) {
-            echo "Connessione Fallita";
-            exit();
-        }
-    }
-
-}
-/** Secondo modo */
-include ("data.php");
-$mysqli = new mysqli(HOST, USER, PASS, DB);
-
-
-/**
- * Su un altro file
-    include "connessione.php"
-    // istanza della classe
-    $data = new Open();
-    // chiamata alla funzione di connessione
-    $data->connetti();
- */
-
-
-
-/*    $connessione = mysqli_connect("127.0.0.1", "root","sqladm","wrc");
+    $connessione = mysqli_connect("127.0.0.1", "root","","wrc");
     if($connessione->connect_errno) {
         echo "Connessione Fallita";
         exit();
     }
-*/
+?>
+<?php
+    function trovaLogo($nome) {
+        if(strpos($nome, 'Toyota') !== false)
+        $immagine = "<td><img class='logoAuto' src='media/toyota.png' alt='Logo Toyota' height=2% width=8%></td>";
+        if(strpos($nome, 'Ford') !== false)
+        $immagine = "<td><img class='logoAuto' src='media/ford.png' alt='Logo Ford' height=2% width=8%></td>";
+        if(strpos($nome, 'Citroen') !== false)
+        $immagine = "<td><img class='logoAuto' src='media/citroen.png' alt='Logo Citroen' height=2% width=8%></td>";
+        if(strpos($nome, 'Hyundai') !== false)
+        $immagine = "<td><img class='logoAuto' src='media/hyundai.png' alt='Logo Hyundai' height=2% width=8%></td>";
+        return $immagine;
+    }
+?>
