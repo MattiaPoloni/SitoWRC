@@ -7,9 +7,6 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/slide.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-
     <title>HomePage</title>
     <meta name="description" content="Descrizione sommaria.">
 </head>
@@ -30,14 +27,15 @@
             echo "Errore db";
             exit();
         }else{
-                echo "<table><tr><td>Team</td><td>Punti</td></tr>";
+                echo "<table><th colspan='2'>Team</th><th>Punti</th>";
                 while($row = $q->fetch_array(MYSQLI_NUM)){
-                echo "<tr><td>$row[0]</td><td>$row[1]</td></tr>";
-            }
+                    echo "<tr>".trovaLogo($row[0])."<td>$row[0]</td><td>$row[1]</td></tr>";
+                }
                 echo "</table>";
-                exit();}
+                exit();
+            }
     } else {
-        $q = $connessione->query("SELECT Pilota.cognome, Pilota.nome, Auto.modello,
+        $q = $connessione->query("SELECT Pilota.cognome, Pilota.nome, Auto.marca,
         SUM(Risultati_Gare.punti)
         FROM Pilota INNER JOIN Risultati_Gare ON Pilota.matricola = Risultati_Gare.id_pilota
         INNER JOIN Team ON Pilota.id_team = Team.id
@@ -48,11 +46,11 @@
             echo "Errore db";
             exit();
         }else{
-            echo "<table><tr><th>Pilota</th><th>Auto</th><th>Punti</th></tr>";
+            echo "<table><th>Pilota</th><th colspan='2'>Auto</th><th>Punti</th>";
             while($row = $q->fetch_array(MYSQLI_NUM)){
                 $pilota = substr($row[1],0,1);
-                $pilota = "$pilota.$row[0]";
-                echo "<tr><td>$pilota</td><td>$row[2]</td><td>$row[3]</td></tr>";
+                $pilota = "$pilota. $row[0]";
+                echo "<tr><td>$pilota</td>".trovaLogo($row[2])."<td>$row[2]</td><td>$row[3]</td></tr>";
             }
         echo "</table>";
         exit();
