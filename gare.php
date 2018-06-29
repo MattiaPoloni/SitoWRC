@@ -55,7 +55,6 @@
             $ris = $connessione->query($query);
             if(!$ris) {
                 echo "Errore Database";
-                exit();
             } else {
                 if(mysqli_num_rows($ris) == 0)
                     echo "Gara Non Ancora Disputata";
@@ -71,7 +70,7 @@
                     }
                 }
             echo "</table>";
-            exit();}
+            }
         $connessione->close();
 
     

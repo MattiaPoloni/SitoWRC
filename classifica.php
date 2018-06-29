@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <title>HomePage</title>
     <meta name="description" content="Descrizione sommaria.">
 </head>
@@ -25,14 +25,12 @@
                                     ORDER BY sum(punti) DESC;");
         if(!$q){
             echo "Errore db";
-            exit();
         }else{
                 echo "<table><th colspan='2'>Team</th><th>Punti</th>";
                 while($row = $q->fetch_array(MYSQLI_NUM)){
                     echo "<tr>".trovaLogo($row[0])."<td>$row[0]</td><td>$row[1]</td></tr>";
                 }
                 echo "</table>";
-                exit();
             }
     } else {
         $q = $connessione->query("SELECT Pilota.cognome, Pilota.nome, Auto.marca,
@@ -44,7 +42,6 @@
         ORDER BY SUM(Risultati_Gare.punti) DESC;");
         if(!$q){
             echo "Errore db";
-            exit();
         }else{
             echo "<table><th>Pilota</th><th colspan='2'>Auto</th><th>Punti</th>";
             while($row = $q->fetch_array(MYSQLI_NUM)){
@@ -53,11 +50,11 @@
                 echo "<tr><td>$pilota</td>".trovaLogo($row[2])."<td>$row[2]</td><td>$row[3]</td></tr>";
             }
         echo "</table>";
-        exit();
         }
     }
     $connessione->close();
 ?>
-</body>
 <?php include('common/footer.php'); ?>
+</body>
+
 </html>
