@@ -2,7 +2,10 @@
 *, ::after, ::before {
     box-sizing: inherit;
 }
-
+/*Roba Santinon*/
+.logoAuto {
+    width: 10%;
+}
 html {
     font-family: sans-serif;
     line-height: 1.15;
