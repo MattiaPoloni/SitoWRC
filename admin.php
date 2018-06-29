@@ -29,7 +29,7 @@
          */
 
         $selectGare = "SELECT Gara.id, Pista.nome, Gara.giorno FROM `Pista` inner join Gara on Pista.id = Gara.id_pista 
-                    where gara.id not in (select id_gara from risultati_gare)";
+                    where gara.id not in (select id_gara from risultati_gare);";
         //$data = new Open();
         //$mysqli->connect();
         $gara = $connessione->query($selectGare);
@@ -133,7 +133,7 @@
     }
 
     //var_dump($connessione);
-    if ($_POST['save']!= null) {
+    if (isset($_POST['save'])) {
 
         /*$sql = "INSERT INTO Gara (id, giorno, id_pista)
         VALUES (?,?,?)";
@@ -152,7 +152,6 @@
             $sql .= "INSERT INTO Risultati_Gare (id_gara, id_pilota, posizione_arrivo, punti)
         VALUES ('" . $_POST["gara"] . "','" . (1000+$i) . "','" . $_POST["p".$i] . "','" . punti($_POST["p".$i]) . "');";
         }
-        //echo $sql;
         $q = $connessione->multi_query($sql);
         if (!$q) {
             echo "Errore db";
@@ -176,7 +175,7 @@
     <form method="post">
         <?php
         $select = "SELECT Gara.id, Pista.nome, Gara.giorno FROM `Pista` inner join Gara on Pista.id = Gara.id_pista
-                    where gara.id not in (select id_gara from risultati_gare)";
+                    where gara.id not in (select id_gara from risultati_gare);";
         //$data = new Open();
         //$mysqli->connect();
         $pista = $connessione->query($select);
@@ -193,22 +192,26 @@
             echo "0 results";
         endif;
         ?>
-        <!--<button type="submit" name="modifica">Modifica</button>-->
+        <button type="submit" name="modifica">Modifica</button>
 
     </form>
     <?php
+    if(isset($_POST["modifica"])) {
         $dati = "SELECT pista.nome,pista.citta,pista.stato,gara.giorno,pista.tipo FROM gara INNER JOIN pista on id_pista=pista.id
-                  where id=".$_POST["garaScelta"];
+                  where id=" . $_POST["garaScelta"];
         $data = $connessione->query($dati);
         var_dump($data);
-    $connessione->close();
+    }
     ?>
-
-    <form method="post">
-
-
-    </form>
 </div>
+
+<?php
+$connessione->close();
+?>
+
+
+
+
 
 </body>
 
