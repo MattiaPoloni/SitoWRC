@@ -1,31 +1,57 @@
-<!DOCTYPE html>
-<html lang="it">
+<?php
+include("connessione.php");
+$flag = false;
+
+session_start();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") :
+    // username and password sent from form
+    $myusername = mysqli_real_escape_string($connessione, $_POST['username']);
+    $mypassword = mysqli_real_escape_string($connessione, $_POST['password']);
+
+    $sql = "SELECT id FROM Amministratore WHERE user = '$myusername' and password = '$mypassword'";
+    $result = mysqli_query($connessione, $sql);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+    $count = mysqli_num_rows($result);
+
+
+    //Se fa il match allora count è 1
+    if ($count == 1) :
+        $_SESSION['login_user'] = $myusername;
+
+        var_dump($_SESSION['login_user']);
+
+        header("location: welcome.php");
+    else :
+        $flag = true;
+    endif;
+endif;
+?>
+<html>
+
 <head>
-    <!-- meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/login.css">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/slide.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <title>Pagina Login</title>
 
-    <title>HomePage</title>
-    <meta name="description" content="Descrizione sommaria.">
 </head>
+
 <body>
-    <?php include('common/header.html');
-        include('common/menu.html'); ?>
-    <form action="admin.php" method="post">
-        <fieldset>
-            <legend>Login</legend>
-            <label for="user">Username:</label>
-            <input name="user" id="user" maxlenght="20" />
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" maxlenght="20" />
-          <input type="submit" value="Login">
-        </fieldset>
+
+<main class="main">
+    <h4>Login</h4>
+
+    <form action="" method="post" class="formLogin">
+        <label>Nome :</label><input type="text" name="username" class="box"/><br/><br/>
+        <label>Password :</label><input type="password" name="password" class="box"/><br/><br/>
+        <input type="submit" value=" Submit "/><br/>
     </form>
+
+    <?php if($flag === true) : ?>
+        <p>Nome o Password invalidi.</p>
+    <?php endif; ?>
+</main>
+
 </body>
-<?php include('common/footer.php') ?>
 </html>
