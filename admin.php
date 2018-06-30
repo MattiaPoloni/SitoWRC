@@ -133,7 +133,7 @@
     }
 
     //var_dump($connessione);
-    if (isset($_POST['save'])) {
+    if (isset($_POST['save']) && !empty($_POST['save'])) {
 
         /*$sql = "INSERT INTO Gara (id, giorno, id_pista)
         VALUES (?,?,?)";
@@ -192,17 +192,45 @@
             echo "0 results";
         endif;
         ?>
-        <button type="submit" name="modifica">Modifica</button>
+        <button type="submit" name="modifica" value="modifica">Modifica</button>
 
     </form>
     <?php
-    if(isset($_POST["modifica"])) {
-        $dati = "SELECT pista.nome,pista.citta,pista.stato,gara.giorno,pista.tipo FROM gara INNER JOIN pista on id_pista=pista.id
-                  where id=" . $_POST["garaScelta"];
+    if(isset($_POST["modifica"]) && !empty($_POST["modifica"])) {
+        $dati = "SELECT pista.nome,pista.citta,pista.stato,gara.giorno,pista.tipo,pista.id as pistaId,gara.id as garaId FROM gara INNER JOIN pista on id_pista=pista.id
+                  where gara.id=" . $_POST["garaScelta"];
         $data = $connessione->query($dati);
-        var_dump($data);
+        echo "<form method=\"post\">";
+        while($row3 = $data->fetch_assoc()) {
+            echo '<input type="text" size = "40" name="nomePista" value="'.$row3["nome"].'">';
+            echo '<input type="text" name="cittaPista" value="'.$row3["citta"].'">';
+            echo '<input type="text" name="statoPista" value="'.$row3["stato"].'">';
+            echo '<input type="text" name="giornoGara" value="'.$row3["giorno"].'">';
+            echo '<input type="text" name="tipoPista" value="'.$row3["tipo"].'">';
+            echo '<input type="hidden" name="idPista" value="'.$row3["pistaId"].'">';
+            echo '<input type="hidden" name="idGara" value="'.$row3["garaId"].'">';
+        }
+        echo "</br>";
+        echo "<button type=\"submit\" name=\"applica\" value=\"applica\">Applica modifiche</button>";
+        echo "</form>";
     }
     ?>
+
+    <?php
+    if(isset($_POST["applica"]) && !empty($_POST["applica"])) {
+        $updatePista = "UPDATE Pista
+                        SET nome = \"".$_POST["nomePista"]."\", citta = \"".$_POST["cittaPista"]."\",
+                        stato = \"".$_POST["statoPista"]."\",tipo = \"".$_POST["tipoPista"].
+                        "\" WHERE id = ".$_POST["idPista"].";";
+
+        $updateGara = "UPDATE Gara
+                        SET giorno = \"".$_POST["tipoPista"].
+                        "\" WHERE id = ".$_POST["idGara"].";";
+
+        $connessione->query($updatePista);
+    }
+    ?>
+
 </div>
 
 <?php
