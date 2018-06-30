@@ -69,6 +69,7 @@ $cose = array();
     <div class="ancor">
         <div class="container">
             <p>&copy; <?php auto_copyright("2018"); ?> Sito Buzo.</p>
+            <a href="../login.php">Amministratore</a>
         </div>
     </div>
 </footer>
