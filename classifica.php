@@ -12,7 +12,9 @@
 </head>
 <body>
 <?php include('common/header.html');
-    include('common/menu.html'); ?>
+    include('common/menu.html'); 
+    include('funzioni.php');
+?>
 <a href="classifica.php?cosa=piloti">Classifica Piloti</a>
 <a href="classifica.php?cosa=costruttori">Classifica Costruttori</a>
 <?php
