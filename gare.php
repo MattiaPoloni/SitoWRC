@@ -13,7 +13,8 @@
 <body>
     <?php include('common/header.html');
         include('common/menu.html');
-        include('connessione.php'); 
+        include('connessione.php');
+        include('funzioni.php');
         if(isset($_POST["gara"])) {
             $gara = explode("-",$_POST["gara"]);
             $num_gara = $gara[0];
