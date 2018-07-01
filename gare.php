@@ -14,7 +14,7 @@
     <?php include('common/header.html');
         include('common/menu.html');
         include('connessione.php');
-        include('funzioni.php');
+        include('funzioni.php'); 
         if(isset($_POST["gara"])) {
             $gara = explode("-",$_POST["gara"]);
             $num_gara = $gara[0];
@@ -35,9 +35,11 @@
                     $ris = $connessione->query("SELECT Gara.id, Pista.nome
                         FROM Gara INNER JOIN Pista ON Gara.id_pista = Pista.id
                         ORDER BY Gara.id;");
-                    if($ris) {
+                    if($ris) { 
                         while($row = $ris->fetch_array(MYSQLI_NUM)) {
-                            echo "<option value='$row[0]-$row[1]'>$row[0] - $row[1]</option>";
+                            echo "<option value='$row[0]-$row[1]'";
+                            if($row[0] == $num_gara) echo " selected='selected'";
+                            echo ">$row[0] - $row[1]</option>";
                         }
                     }
                 ?>
