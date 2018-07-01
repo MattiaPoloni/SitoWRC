@@ -1,0 +1,100 @@
+.slider {
+    position: relative;
+    height: 70vh;
+    width: 100%;
+}
+
+/* Slides */
+.slider ul {
+    padding: 0;
+}
+.slider li {
+    width: 100%;
+    list-style:none;
+    position: absolute;
+}
+.slider input {
+    display: none;
+}
+
+/* Navigation */
+
+.slider label {
+    background-color: #111;
+    background-image: linear-gradient(transparent, hsla(0,0%,0%,.25));
+    border: .2em solid transparent;
+    bottom: .5em;
+    border-radius: 100%;
+    cursor: pointer;
+    display: block;
+    height: .5em;
+    left: 24em;
+    opacity: 0;
+    position: absolute;
+    transition: .25s;
+    width: .5em;
+    visibility: hidden;
+    z-index: 10;
+}
+.slider label:after {
+    border-radius: 100%;
+    bottom: -.2em;
+    box-shadow: inset 0 0 0 .2em #111,
+    inset 0 2px 2px #000,
+    0 1px 1px hsla(0,0%,100%,.25);
+    content: '';
+    left: -.2em;
+    position: absolute;
+    right: -.2em;
+    top: -.2em;
+}
+.slider:hover label {
+    opacity: 1;
+    visibility: visible;
+}
+.slider input:checked + label {
+    background-color: #fff;
+}
+.slider:hover li:nth-child(1) label {
+    left: .5em;
+}
+.slider:hover li:nth-child(2) label {
+    left: 2em;
+}
+.slider:hover li:nth-child(3) label {
+    left: 3.5em;
+}
+.slider:hover li:nth-child(4) label {
+    left: 5em;
+}
+
+.slider .cont-img {
+    width: 100%;
+    height: 70vh;
+    opacity: 0;
+    transition: .25s;
+    vertical-align: top;
+    visibility: hidden;
+    background-image: url("../media/gitS.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.slider .cont-img-1 {
+    width: 100%;
+    height: 70vh;
+    opacity: 0;
+    transition: .25s;
+    vertical-align: top;
+    visibility: hidden;
+    background-image: url("../media/nb.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.slider li input:checked ~ div {
+    opacity: 1;
+    visibility: visible;
+    z-index: 10;
+}

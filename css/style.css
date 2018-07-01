@@ -2,7 +2,10 @@
 *, ::after, ::before {
     box-sizing: inherit;
 }
-
+/*Roba Santinon*/
+.logoAuto {
+    width: 10%;
+}
 html {
     font-family: sans-serif;
     line-height: 1.15;
@@ -462,6 +465,10 @@ header[role="banner"] #mobile-menu-toggle {
     transform: translateY(-50%);
 }
 
+#logo-main {
+    height: 5rem;
+}
+
 .menu-sticky {
     position: -webkit-sticky;
     position: sticky;
@@ -479,6 +486,22 @@ header[role="banner"] #mobile-menu-toggle {
 }
 #menu-menu-principale-1 .menu-item {
     display: inline-block;
-    width: 25%;
+    width: 24%;
     text-align: center;
+    padding-top: 1rem;
+}
+#menu-menu-principale-1 .icon-menu {
+    display: block;
+    margin-bottom: 0;
+}
+
+
+/******************************************************* FOOTER *******************************************************/
+
+.ancor {
+    width: 100%;
+    background: #2db999;
+    color: #fff;
+    padding: 15px 0;
+    margin-top: 20px;
 }
