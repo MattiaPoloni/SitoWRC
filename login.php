@@ -19,10 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") :
     //Se fa il match allora count è 1
     if ($count == 1) :
         $_SESSION['login_user'] = $myusername;
-
-        var_dump($_SESSION['login_user']);
-
-        header("location: welcome.php");
+        header("location: admin.php");
     else :
         $flag = true;
     endif;
