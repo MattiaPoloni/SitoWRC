@@ -42,8 +42,10 @@ if (isset($_POST["gara"])) {
                         FROM Gara INNER JOIN Pista ON Gara.id_pista = Pista.id
                         ORDER BY Gara.id;");
                     if ($ris) {
-                        while ($row = $ris->fetch_array(MYSQLI_NUM)) {
-                            echo "<option value='$row[0]-$row[1]'>$row[0] - $row[1]</option>";
+                        while($row = $ris->fetch_array(MYSQLI_NUM)) {
+                            echo "<option value='$row[0]-$row[1]'";
+                            if($row[0] == $num_gara) echo " selected='selected'";
+                            echo ">$row[0] - $row[1]</option>";
                         }
                     }
                     ?>
