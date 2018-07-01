@@ -6,7 +6,33 @@ DROP TABLE IF EXISTS Pista;
 DROP TABLE IF EXISTS Auto;
 DROP TABLE IF EXISTS Amministratore;
 DROP TABLE IF EXISTS Iscritto;
+DROP TABLE IF EXISTS Notizia;
+
 --
+-- Struttura della tabella `notizia`
+--
+
+CREATE TABLE `Notizia` (
+  `id` int(11) NOT NULL,
+  `titolo` varchar(150) COLLATE utf8_bin NOT NULL,
+  `descrizione` varchar(500) COLLATE utf8_bin NOT NULL,
+  `data` date DEFAULT NULL,
+  `fonte` varchar(50) COLLATE utf8_bin NOT NULL,
+  `indirizzo` varchar(200) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dump dei dati per la tabella `notizia`
+--
+
+INSERT INTO `notizia` (`id`, `titolo`, `descrizione`, `data`, `fonte`, `indirizzo`) VALUES
+(1, 'WRC Sardegna: l’isola che c’è!', 'Finalmente è arrivato il momento di veder sfrecciare i piloti del mondiale rally sulle nostre strade! Come di consuetudine la gara si terrà in Sardegna e quando si parla di rally di Italia non si può non pensare subito alle molte insidie che lo caratterizzano. Come per l\'Argentina e il Portogallo, troveremo i primi piloti molto svantaggiati visto che dovranno spazzare la strada.', '2018-06-06', 'sport.sky.it', 'https://sport.sky.it/motori/2018/06/06/wrc-sardegna-2018-isola-che-ce.html'),
+(2, 'WRC Rally Italia 2018 – Neuville re di Sardegna con la Hyundai i20 Coupé', 'Grandi emozioni al Rally Italia Sardegna. Thierry Neuville (al volante della Hyundai i20 Coupé) si è aggiudicato la settima tappa del WRC 2018 beffando Sebastien 	Ogier nella Power Stage e andando a trionfare con soli 7 decimi di vantaggio sul cinque volte campione del mondo. I due rivali nella lotta per il titolo iridato hanno lasciato le briciole agli altri: Esapekka Lappi, terzo con la Toyota Yaris, ha infatti chiuso la gara con quasi due minuti di ritardo.', '2018-06-10', 'www.panorama-auto.it', 'https://www.panorama-auto.it/sport/rally/wrc-rally-italia-sardegna-2018-risultati-classifiche-neuville-hyundai-i20-coupe'),
+(3, 'Ufficiale: Citroen ha scelto Mads Ostberg per sostituire il licenziato Meeke sino al termine del 2019', 'Nel fine settimana del Rally Italia Sardegna i vertici di Citroen Racing avevano affermato di voler annunciare il sostituto di Kris Meeke nelle due settimane successive alla gara sarda, e così è stato. Il team diretto da Pierre Budar ha ufficializzato il nome del pilota che diverrà il secondo titolare nei restanti rally. Si tratta di una vecchia conoscenza del team francese: Mads Ostberg. Al Rally di Catalunya correrà invece Sébastien Loeb, come già previsto a inizio stagione', '2018-06-20', 'www.motorsport.com', 'https://it.motorsport.com/wrc/news/ufficiale-citroen-ha-scelto-mads-ostberg-per-sostituire-il-licenziato-meeke-sino-al-termine-del-2019/3125514/'),
+(4, 'Wrc: si ipotizza un calendario con 15 gare dal 2020', 'Novità per la stagione 2020, quando il calendario Wrc potrebbe essere composto da 15 round. In questo ultimi periodi si è infatti parlato di un ritorno in grande stile del Safari Rally, ma non sono da sottovalutare nemmeno Giappone e il Cile, che spinge per una gara già nel 2019. Non sembrano incoraggianti al momento le notizie per quanto riguarda il Rally di Croazia, finito anch’essi nel ciclone delle potenziali gare con valenza mondiale.', '2018-06-28', 'www.rallyssimo.it', 'http://www.rallyssimo.it/2018/06/28/wrc-si-ipotizza-un-calendario-con-15-gare-dal-2020/'),
+(5, 'Makinen apre le porte della Toyota WRC a Kimi Raikkonen', 'La novità è che Tommi Makinen, team principal del team che corre con Toyota nel mondiale rally, è pronto a mettere a disposizione una Yaris WRC. “Non ha ancora fatto alcun test con noi, ma perché no?” – ha dichiarato il rallista – “Se vuole guidare una macchina posso lasciarglielo fare, senza dubbio. So benissimo come guida“.', '2018-06-28', 'www.formulapassion.it', 'https://www.formulapassion.it/motorsport/formula-1/makinen-apre-le-porte-della-toyota-wrc-kimi-raikkonen-389774.html');
+
+-- --------------------------------------------------------
 -- Table structure for table `Amministratore`
 --
 
@@ -269,7 +295,11 @@ INSERT INTO `Team` (`id`, `nome`, `nome_presidente`, `id_auto`) VALUES
 --
 -- Indexes for dumped tables
 --
-
+--
+-- Indici per le tabelle `Notizia`
+--
+ALTER TABLE `Notizia`
+  ADD PRIMARY KEY (`id`);
 --
 -- Indexes for table `Amministratore`
 --
@@ -336,6 +366,12 @@ ALTER TABLE `Amministratore`
 --
 ALTER TABLE `Iscritto`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `notizia`
+--
+ALTER TABLE `Notizia`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --
@@ -364,4 +400,3 @@ ALTER TABLE `Risultati_Gare`
 --
 ALTER TABLE `Team`
   ADD CONSTRAINT `Team_ibfk_1` FOREIGN KEY (`id_auto`) REFERENCES `Auto` (`id`);
-

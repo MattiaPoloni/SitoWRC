@@ -11,6 +11,7 @@
     <meta name="description" content="Descrizione sommaria.">
 </head>
 <body>
+
 <?php include('common/header.html');
 include('common/menu.html');
 include('connessione.php');
