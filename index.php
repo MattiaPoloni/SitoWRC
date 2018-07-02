@@ -9,13 +9,15 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/slide.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <title>HomePage</title>
     <meta name="description" content="Descrizione sommaria.">
 </head>
-<body>
+<body class="home">
+<?php session_start(); ?>
 <?php include('common/header.html') ?>
-<?php include('common/menu.html') ?>
-<div class="slider">
+<div class="slider content">
     <ul>
         <li>
             <input type="radio" id="slide1" name="slide" checked>
@@ -40,7 +42,7 @@
     </ul>
 </div>
 
-<main class="row">
+<main>
     <!-- div padre -->
     <div class="container">
 

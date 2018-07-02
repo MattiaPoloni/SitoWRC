@@ -6,21 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="description" content="Classifica piloti e costruttori" />
     <!-- CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <title>Classifica</title>
+
 </head>
-<body>
-<?php include('common/header.html');
-    include('common/menu.html'); 
-    include('funzioni.php');
-?>
-<a href="classifica.php?cosa=piloti">Classifica Piloti</a>
-<a href="classifica.php?cosa=costruttori">Classifica Costruttori</a>
-<?php
-    include "connessione.php";
-    if($_GET['cosa'] == "costruttori") {
-    
-        $q = $connessione->query("SELECT DISTINCT Team.nome AS 'Team', SUM(punti) AS 'Punti'
+<body class="classifica">
+<main class="content">
+    <div class="container classifica">
+        <?php session_start() ?>
+        <?php include('common/header.html');
+        include('funzioni.php');
+        ?>
+        <div class="navigation">
+            <a id="piloti" href="classifica.php?cosa=piloti">Classifica Piloti</a>
+            <a id="costruttori" href="classifica.php?cosa=costruttori">Classifica Costruttori</a>
+        </div>
+        <?php
+        include "connessione.php";
+        if ($_GET['cosa'] == "costruttori") {
+
+            $q = $connessione->query("SELECT DISTINCT Team.nome AS 'Team', SUM(punti) AS 'Punti'
                                     FROM Team INNER JOIN Pilota ON Pilota.id_team = Team.id INNER JOIN Risultati_Gare ON Risultati_Gare.id_pilota = Pilota.matricola
                                     GROUP BY Pilota.id_team
                                     ORDER BY sum(punti) DESC;");
@@ -34,8 +44,8 @@
                 }
                 echo "</tbody></table>";
             }
-    } else {
-        $q = $connessione->query("SELECT Pilota.cognome, Pilota.nome, Auto.marca,
+        } else {
+            $q = $connessione->query("SELECT Pilota.cognome, Pilota.nome, Auto.marca,
         SUM(Risultati_Gare.punti)
         FROM Pilota INNER JOIN Risultati_Gare ON Pilota.matricola = Risultati_Gare.id_pilota
         INNER JOIN Team ON Pilota.id_team = Team.id
@@ -55,10 +65,20 @@
             }
         echo "</tbody></table>";
         }
-    }
-    $connessione->close();
-?>
+        $connessione->close();
+        ?>
+    </div>
+</main>
 <?php include('common/footer.php'); ?>
 </body>
-
+<script>
+    $(document).ready(function () {
+        var url = window.location.href.split("?");
+        if (url[1] == "cosa=default" || url[1] == "cosa=piloti") {
+            $('#piloti').addClass("active");
+        } else if (url[1] == "cosa=costruttori") {
+            $('#costruttori').addClass("active");
+        }
+    });
+</script>
 </html>
