@@ -10,7 +10,6 @@
     <meta name="description" content="Descrizione sommaria.">
 </head>
 <body class="news">
-<div class="row">
     <div class="container">
         <?php
         session_start();
@@ -40,17 +39,15 @@
         ?>
 
         <form action="news.php" method="post">
-            <fieldset>
                 <fieldset>
                     <legend>Iscriviti alla nostra Newsletter</legend>
                     <label for="email">E-mail:</label>
                     <input name="email" id="email" maxlenght="30"/>
-                    <input type="submit" value="Salva"/>
-                    <input type="reset" value="Cancella"/>
+                    <input type="submit" class="button" value="Salva"/>
+                    <input type="reset" class="button" value="Cancella"/>
                 </fieldset>
         </form>
     </div>
-</div>
 <?php include('common/footer.php'); ?>
 </body>
 </html>

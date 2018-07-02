@@ -26,16 +26,16 @@
     border-radius: 100%;
     cursor: pointer;
     display: block;
-    height: .5em;
+    height: 1em;
     left: 24em;
     opacity: 0;
     position: absolute;
     transition: .25s;
-    width: .5em;
+    width: 1em;
     visibility: hidden;
     z-index: 10;
 }
-.slider label:after {
+.slider label:before {
     border-radius: 100%;
     bottom: -.2em;
     box-shadow: inset 0 0 0 .2em #111,
