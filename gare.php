@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="it">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it">
 <head>
     <!-- meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Risultati Gare Disputate" />
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/style.css">
-    <title>HomePage</title>
-    <meta name="description" content="Descrizione sommaria.">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <title>Gare</title>
 </head>
 <body>
 
@@ -30,13 +29,13 @@ if (isset($_POST["gara"])) {
 }
 
 ?>
-<main class="row">
+<div class="row">
     <div class="container gara">
         <form action="gare.php" method="post">
             <fieldset>
                 <legend>Selezione Gare</legend>
                 <label for="gara">Gara:</label>
-                <select name="gara">
+                <select name="gara" id="gara">
                     <?php
                     $ris = $connessione->query("SELECT Gara.id, Pista.nome
                         FROM Gara INNER JOIN Pista ON Gara.id_pista = Pista.id
@@ -48,8 +47,7 @@ if (isset($_POST["gara"])) {
                     }
                     ?>
                 </select>
-
-                <input class="button" type="submit" value="Cerca">
+                <input class="button" type="submit" value="Cerca" />
             </fieldset>
         </form>
         <?php
@@ -67,8 +65,9 @@ if (isset($_POST["gara"])) {
             if (mysqli_num_rows($ris) == 0)
                 echo "Gara Non Ancora Disputata";
             else {
-                echo "<table summary='Tabella contente i risultati relativi alla gara $nome_gara'>";
-                echo "<th>Posizione</th><th>Pilota</th><th colspan='2'>Auto</th><th>Punti</th></tr>";
+                echo "<table summary='Tabella contente i risultati relativi alla gara $nome_gara'><thead>";
+                echo "<tr><th scope='col'>Posizione</th><th scope='col'>Pilota</th><th colspan='2' scope='colgroup'>Auto</th><th scope='col'>Punti</th></tr>";
+                echo "</thead><tbody>";
                 while ($row = $ris->fetch_array(MYSQLI_NUM)) {
                     if ($row[0] == 99)
                         $row[0] = "RIT";
@@ -77,19 +76,16 @@ if (isset($_POST["gara"])) {
                     echo "<tr><td>$row[0]</td><td>$pilota</td>" . trovaLogo($row[3]) . "<td>$row[3]</td><td>$row[4]</td></tr>";
                 }
             }
-            echo "</table>";
+            echo "</tbody></table>";
         }
         $connessione->close();
 
 
         ?>
     </div>
-</main>
-<?php include('common/footer.php') ?>
+</div>
+<?php include('common/footer.php'); ?>
 </body>
 
 
 </html>
-
-
-
