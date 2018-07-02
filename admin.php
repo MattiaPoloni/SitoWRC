@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="it">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it">
 <head>
     <!-- meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Pagina Amministrazione" />
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/style.css">
-
-    <title>HomePage</title>
-    <meta name="description" content="Descrizione sommaria.">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <title>Amministrazione</title>
 </head>
 <body>
 <?php include('common/header.html'); ?>
