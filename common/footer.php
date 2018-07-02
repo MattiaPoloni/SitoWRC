@@ -8,71 +8,18 @@
    <?php if(intval($year) > date('Y')){ echo date('Y'); } ?>
 <?php } ?>
 
-<?php
-//init $gare, $cosa --> @todo rimovere quando sarà fatto foreach.
-$gare = array();
-$cose = array();
-?>
 
 <footer id="footer" class="content-info">
-    <div class="container">
-        <div class="row wrap-menus-footer">
-            <div class="col33">
-                <div id="footer-menu" class="menu-footer-menu-container">
-                    <ul id="menu-footer-menu" class="nav">
-                        <li id="menu-item-1"
-                            class="menu-item"><a
-                                    href="">Gare</a></li>
-                        <li id="menu-item-2"
-                            class="menu-item"><a
-                                    href="/cookie-policy/">Cookie Policy</a></li>
-                        <li id="menu-item-3"
-                            class="menu-item"><a
-                                    href="/privacy-policy/">Privacy Policy</a>
-                        </li>
-                        <li id="menu-item-4"
-                            class="menu-item"><a
-                                    href="/contatti/">Contatti</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col33 ft-menu">
-                <h4>Cose da mettere e decidere. </h4>
-                <?php foreach ($cose
-
-                as $cosa) : ?>
-                <ul>
-                    <li>
-                        <a href=""
-                           title="">
-                            Cose scritte con php che bisogna tirar fuori.</a>
-                    </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-            <div class="col33 ft-menu">
-                <h4>Gare recenti</h4>
-                <?php foreach ($gare
-
-                as $gara) : ?>
-                <ul>
-                    <li>
-                        <a href=""
-                           title="">
-                            Cose scritte con php che bisogna tirar fuori.</a>
-                    </li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        </div>
-    </div>
     <div class="ancor">
         <div class="container">
-            <p>&copy; <?php auto_copyright("2018"); ?> Sito Buzo.</p>
-            <a href="../login.php">Amministratore</a>
+            <p>&copy; <?php auto_copyright("2018"); ?> Sito WRC News.</p>
+            <?php if (!isset($_SESSION['login_user'])) : ?>
+                <a href="../login.php">Login</a>
+            <?php else : ?>
+            <a href="../admin.php?azione=deault">Amministratore</a>
+            <?php endif; ?>
         </div>
     </div>
 </footer>
-
 
 </html>

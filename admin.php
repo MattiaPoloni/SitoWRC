@@ -13,7 +13,6 @@
 </head>
 <body>
 <?php include('common/header.html') ?>
-<?php include('common/menu.html') ?>
 <?php include "connessione.php"; ?>
 <?php require "funzioni.php"; ?>
 
