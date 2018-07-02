@@ -179,7 +179,7 @@ if($_GET["azione"]=="modificaGare") :
                         <?php
                         while ($rower = $pista->fetch_assoc()) : ?>
 
-                            <?php echo '<option value="'.$rower['id'].' "';?>
+                            <?php echo '<option value="'.$rower['id'].'" ';?>
                                 <?php if (isset($_POST['garaScelta']) && $_POST['garaScelta'] == $rower["id"]) {
                                     echo ' selected = "selected"';
                                 }
