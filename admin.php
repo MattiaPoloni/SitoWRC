@@ -52,11 +52,11 @@ if($_GET["azione"]=="inserimentoRisultati") :
                         <?php
                         while ($row = $gara->fetch_assoc()) : ?>
                             <?php
-                            echo '<option value="'.$row['id'].'">';
+                            echo '<option value="'.$row['id'].'" ';
                             if(isset($_POST['gara']) && $_POST['gara'] == $row["id"])
                                 echo ' selected= "selected"';
                             ?>
-                            <?php echo $row["nome"]." ".$row["giorno"]."</option>"; ?>
+                            <?php echo ">".$row["nome"]." ".$row["giorno"]."</option>"; ?>
                         <?php endwhile;
                     echo "</select>";?>
                 <?php else :
@@ -184,14 +184,13 @@ if($_GET["azione"]=="modificaGare") :
                                     echo ' selected = "selected"';
                                 }
                                 echo '>'; ?>
-                                <?php echo $rower["nome"] . " " . $rower["giorno"].'</option>'?>
+                                <?php echo $rower["nome"] . " " . $rower["giorno"]."</option>"?>
                         <?php endwhile;
                     echo "</select>"; ?>
                 <?php else :
                     echo "0 results";
                 endif;?>
                 <input type="submit" name="modifica" value="Modifica"/>
-                <input type="reset" value="Cancella"/>
             </fieldset>
         </form>
 
@@ -212,7 +211,8 @@ if($_GET["azione"]=="modificaGare") :
                         echo '<input type="hidden" name="idPista" value="'.$row3["pistaId"].'">';
                         echo '<input type="hidden" name="idGara" value="'.$row3["garaId"].'">';
                     }?>
-                    <input type="submit" value="Applica modifiche"/>
+                    <input type="submit" name="applica" value="Applica modifiche"/>
+                    <input type="reset" value="Cancella"/>
                 </fieldset>
             </form>
             <?php
@@ -227,9 +227,10 @@ if($_GET["azione"]=="modificaGare") :
                 "\" WHERE id = " . $_POST["idPista"] . ";";
 
             $updateGara = "UPDATE Gara
-                        SET giorno = \"" . $_POST["tipoPista"] .
+                        SET giorno = \"" . $_POST["giornoGara"] .
                 "\" WHERE id = " . $_POST["idGara"] . ";";
             $connessione->query($updatePista);
+            $connessione->query($updateGara);
         }
         ?>
     </div>
