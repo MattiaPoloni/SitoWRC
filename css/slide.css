@@ -22,7 +22,6 @@
 .slider label {
     background-color: #111;
     background-image: linear-gradient(transparent, hsla(0,0%,0%,.25));
-    border: .2em solid transparent;
     bottom: .5em;
     border-radius: 100%;
     cursor: pointer;
@@ -75,7 +74,7 @@
     transition: .25s;
     vertical-align: top;
     visibility: hidden;
-    background-image: url("../media/gitS.png");
+    background-image: url("../media/3.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -87,7 +86,19 @@
     transition: .25s;
     vertical-align: top;
     visibility: hidden;
-    background-image: url("../media/nb.jpg");
+    background-image: url("../media/2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.slider .cont-img-2 {
+    width: 100%;
+    height: 70vh;
+    opacity: 0;
+    transition: .25s;
+    vertical-align: top;
+    visibility: hidden;
+    background-image: url("../media/1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
