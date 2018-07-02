@@ -8,6 +8,7 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <title>Amministrazione</title>
+
 </head>
 <body>
 
@@ -30,17 +31,12 @@
 </div>
 <?php
 if($_GET["azione"]=="inserimentoRisultati") :
-?>
-<div class="risultati">
+    ?>
+    <div class="risultati">
+        <h3>Inserimento dei risultati:</h3>
 
-    <form method="post">
-
-        <h2><a href="logout.php">Sign Out</a></h2>
-        <div class="risultati">
-            <h3>Inserimento dei risultati:</h3>
-
-            <form method="post">
-
+        <form method="post" action="admin.php?azione=inserimentoRisultati">
+            <fieldset>
 
                 <?php
 
@@ -51,18 +47,18 @@ if($_GET["azione"]=="inserimentoRisultati") :
                 $gara = $connessione->query($selectGare);
                 if ($gara->num_rows > 0) :
                     // output data of each row
-                    ?>
-                    <select name="gara">
+
+                    echo '<select name="gara">'; ?>
                         <?php
                         while ($row = $gara->fetch_assoc()) : ?>
-
-                            <option value="<?php echo $row["id"] ?>"
-                                <?php if(isset($_POST['gara']) && $_POST['gara'] == $row["id"])
-                                    echo ' selected= "selected"';
-                                ?>>
-                                <?php echo $row["nome"]." ".$row["giorno"] ?></option>
-                        <?php endwhile; ?>
-                    </select>
+                            <?php
+                            echo '<option value="'.$row['id'].'">';
+                            if(isset($_POST['gara']) && $_POST['gara'] == $row["id"])
+                                echo ' selected= "selected"';
+                            ?>
+                            <?php echo $row["nome"]." ".$row["giorno"]."</option>"; ?>
+                        <?php endwhile;
+                    echo "</select>";?>
                 <?php else :
                     echo "0 results";
                 endif;
@@ -87,23 +83,26 @@ if($_GET["azione"]=="inserimentoRisultati") :
                         <?php echo '<label for="pilota">' . $row["nome"] . " " . $row["cognome"] ?>
                         <?php echo "</label>";
                         $selectPosizioni = 'SELECT posizione_arrivo from Risultati_Gare where id_gara = "' . $_POST["gara"] . '" AND id_pilota = "' . $row["matricola"] . '";';
-                        $posizionePilota = mysqli_fetch_array($connessione->query($selectPosizioni), MYSQLI_ASSOC);
-                        echo "<select name=p" . $j . ">";
-                        for ($i = 1; $i < 17; $i++) {
-                            if ($i == $posizionePilota["posizione_arrivo"])
-                                echo '<option selected = "selected" value=' . $i . '>' . $i . '°</option>';
-                            else
-                                echo "<option value=" . $i . ">" . $i . "°</option>";
-                        }
-                        echo "<option ";
-                        if ($posizionePilota["posizione_arrivo"] == 99)
-                            echo 'selected = "selected"';
+                        $posizionePilota = mysqli_fetch_array($connessione->query($selectPosizioni), MYSQLI_ASSOC);?>
+                        <?php echo '<select name="p'.$j.'">';?>
+                            <?php
+                            for ($i = 1; $i < 17; $i++) {
+                                if ($i == $posizionePilota["posizione_arrivo"])
+                                    echo '<option selected = "selected" value=' . $i . '>' . $i . '°</option>';
+                                else
+                                    echo "<option value=" . $i . ">" . $i . "°</option>";
+                            }
+                            echo "<option "; ?>
+                                <?php
+                                if ($posizionePilota["posizione_arrivo"] == 99)
+                                    echo 'selected = "selected"';
 
-                        echo "value=99>RIT</option>";
-                        echo "</select>";
-                        echo "</br>";
-                        $j++; ?>
-                    <?php endwhile; ?>
+                                    echo 'value="99">RIT</option>'; ?>
+                        <?php echo"</select>"; ?>
+                        <br/>
+                        <?php
+                        $j++;
+                    endwhile; ?>
                 <?php else :
                     echo "0 results";
                 endif;
@@ -114,96 +113,96 @@ if($_GET["azione"]=="inserimentoRisultati") :
 
                 <button type="submit" name="save" value="save">Carica</button>
                 <input type="reset" value="Cancella"/>
-            </form>
-            <?php
-            }
-            ?>
+            </fieldset>
+        </form>
+        <?php
+        }
+        ?>
 
-            <?php
+        <?php
 
-            if (isset($_POST['save']) && !empty($_POST['save'])) {
-                $check = 'SELECT id_gara from Risultati_Gare where id_gara = "' . $_POST["gara"] . '";';
-                $ris = $connessione->query($check);
-                if ($ris->num_rows > 0) {
-                    $sql2 = "";
-                    for ($i = 1; $i < 11; $i++) {
-                        $sql2 .= 'UPDATE Risultati_Gare SET posizione_arrivo = "' . $_POST["p" . $i] . '",
+        if (isset($_POST['save']) && !empty($_POST['save'])) {
+            $check = 'SELECT id_gara from Risultati_Gare where id_gara = "' . $_POST["gara"] . '";';
+            $ris = $connessione->query($check);
+            if ($ris->num_rows > 0) {
+                $sql2 = "";
+                for ($i = 1; $i < 11; $i++) {
+                    $sql2 .= 'UPDATE Risultati_Gare SET posizione_arrivo = "' . $_POST["p" . $i] . '",
                      punti = "' . punti($_POST["p" . $i]) . '" WHERE id_gara = "' . $_POST["gara"] . '" 
                      AND id_pilota = "' . (1000 + $i) . '";';
-                    }
-                    $q2 = $connessione->multi_query($sql2);
-                    if (!$q2) {
-                        echo "Errore db";
-                        exit();
-                    } else {
-                        echo "Tutto bene";
-                    }
-                } else {
-                    $sql = "";
-                    for ($j = 1; $j < 11; $j++) {
-                        $sql .= "INSERT INTO Risultati_Gare (id_gara, id_pilota, posizione_arrivo, punti)
+                }
+                $q2 = $connessione->multi_query($sql2);
+                if (!$q2) {
+                    echo "Errore db";
+                    exit();
+                }
+            } else {
+                $sql = "";
+                for ($j = 1; $j < 11; $j++) {
+                    $sql .= "INSERT INTO Risultati_Gare (id_gara, id_pilota, posizione_arrivo, punti)
         VALUES ('" . $_POST["gara"] . "','" . (1000 + $j) . "','" . $_POST["p" . $j] . "','" . punti($_POST["p" . $j]) . "');";
-                    }
-                    $q = $connessione->multi_query($sql);
-                    if (!$q) {
-                        echo "Errore db";
-                        exit();
-                    } else {
-                        echo "Tutto bene";
-                    }
+                }
+                $q = $connessione->multi_query($sql);
+                if (!$q) {
+                    echo "Errore db";
+                    exit();
                 }
             }
+        }
 
-            ?>
-        </div>
-        </br>
-        <?php
-        endif;
         ?>
-        <?php
-        if($_GET["azione"]=="modificaGare") :
-            ?>
-            <div class="modifica">
-                <h3> Modifica gare: </h3></br>
+    </div>
+<?php
+endif;
+?>
+<?php
+if($_GET["azione"]=="modificaGare") :
+    ?>
+    <div class="modifica">
+        <h3> Modifica gare: </h3><br/>
 
 
-                <form method="post">
-                    <?php
-
-                    $select = "SELECT Gara.id, Pista.nome, Gara.giorno FROM `Pista` inner join Gara on Pista.id = Gara.id_pista
-            where Gara.id not in (select id_gara from Risultati_Gare);";
-                    //$data = new Open();
-                    //$mysqli->connect();
-                    $pista = mysqli_query($connessione, $select);
-                    //$pista = $connessione->query($select);
-                    if (mysqli_num_rows($pista) > 0) :
-                        // output data of each row
-                        ?>
-                        <select name="garaScelta">
-                            <?php
-                            while ($rower = $pista->fetch_assoc()) : ?>
-
-                                <option value="<?php echo $rower["id"] ?>"
-                                    <?php if (isset($_POST['garaScelta']) && $_POST['garaScelta'] == $rower["id"]) {
-                                        echo ' selected = "selected"';
-                                    }
-                                    ?>>
-                                    <?php echo $rower["nome"] . " " . $rower["giorno"] ?></option>
-                            <?php endwhile; ?>
-                        </select>
-                    <?php else :
-                        echo "0 results";
-                    endif;?>
-                    <input type="submit" name="modifica" value="Modifica"/>
-                    <input type="reset" value="Cancella"/>
-                </form>
-
+        <form method="post" action="admin.php?azione=modificaGare">
+            <fieldset>
                 <?php
-                if(isset($_POST["modifica"]) && !empty($_POST["modifica"])) {
-                    $dati = "SELECT pista.nome,pista.citta,pista.stato,gara.giorno,pista.tipo,pista.id as pistaId,gara.id as garaId FROM gara INNER JOIN pista on id_pista=pista.id
+
+                $select = "SELECT Gara.id, Pista.nome, Gara.giorno FROM `Pista` inner join Gara on Pista.id = Gara.id_pista
+            where Gara.id not in (select id_gara from Risultati_Gare);";
+                //$data = new Open();
+                //$mysqli->connect();
+                $pista = mysqli_query($connessione, $select);
+                //$pista = $connessione->query($select);
+                if (mysqli_num_rows($pista) > 0) :
+                    // output data of each row
+
+                    echo '<select name="garaScelta">';?>
+                        <?php
+                        while ($rower = $pista->fetch_assoc()) : ?>
+
+                            <?php echo '<option value="'.$rower['id'].' "';?>
+                                <?php if (isset($_POST['garaScelta']) && $_POST['garaScelta'] == $rower["id"]) {
+                                    echo ' selected = "selected"';
+                                }
+                                echo '>'; ?>
+                                <?php echo $rower["nome"] . " " . $rower["giorno"].'</option>'?>
+                        <?php endwhile;
+                    echo "</select>"; ?>
+                <?php else :
+                    echo "0 results";
+                endif;?>
+                <input type="submit" name="modifica" value="Modifica"/>
+                <input type="reset" value="Cancella"/>
+            </fieldset>
+        </form>
+
+        <?php
+        if(isset($_POST["modifica"]) && !empty($_POST["modifica"])) {
+            $dati = "SELECT pista.nome,pista.citta,pista.stato,gara.giorno,pista.tipo,pista.id as pistaId,gara.id as garaId FROM gara INNER JOIN pista on id_pista=pista.id
                   where gara.id=" . $_POST["garaScelta"];
-                    $data = $connessione->query($dati);
-                    echo "<form method=\"post\">";
+            $data = $connessione->query($dati);?>
+            <form method="post" action="admin.php?azione=modificaGare">
+                <fieldset>
+                    <?php
                     while($row3 = $data->fetch_assoc()) {
                         echo '<input type="text" size = "40" name="nomePista" value="'.$row3["nome"].'">';
                         echo '<input type="text" name="cittaPista" value="'.$row3["citta"].'">';
@@ -212,77 +211,77 @@ if($_GET["azione"]=="inserimentoRisultati") :
                         echo '<input type="text" name="tipoPista" value="'.$row3["tipo"].'">';
                         echo '<input type="hidden" name="idPista" value="'.$row3["pistaId"].'">';
                         echo '<input type="hidden" name="idGara" value="'.$row3["garaId"].'">';
-                    }
-                    echo "</br>";
-                    echo "<button type=\"submit\" name=\"applica\" value=\"applica\">Applica modifiche</button>";
-                    echo "</form>";
-                }
-                ?>
+                    }?>
+                    <input type="submit" value="Applica modifiche"/>
+                </fieldset>
+            </form>
+            <?php
+        }
+        ?>
 
-                <?php
-                if(isset($_POST["applica"]) && !empty($_POST["applica"])) {
-                    $updatePista = "UPDATE Pista
+        <?php
+        if(isset($_POST["applica"]) && !empty($_POST["applica"])) {
+            $updatePista = "UPDATE Pista
                         SET nome = \"" . $_POST["nomePista"] . "\", citta = \"" . $_POST["cittaPista"] . "\",
                         stato = \"" . $_POST["statoPista"] . "\",tipo = \"" . $_POST["tipoPista"] .
-                        "\" WHERE id = " . $_POST["idPista"] . ";";
+                "\" WHERE id = " . $_POST["idPista"] . ";";
 
-                    $updateGara = "UPDATE Gara
+            $updateGara = "UPDATE Gara
                         SET giorno = \"" . $_POST["tipoPista"] .
-                        "\" WHERE id = " . $_POST["idGara"] . ";";
-                    $connessione->query($updatePista);
-                }
-                ?>
-            </div>
-        <?php
-        endif;
+                "\" WHERE id = " . $_POST["idGara"] . ";";
+            $connessione->query($updatePista);
+        }
         ?>
-        <?php
-        if($_GET["azione"]=="inserimentoNews") :
-            ?>
-            <div class="news">
-                <form action="admin.php" method="post">
-                    <fieldset>
-                        <legend>Inserimento Nuova Notizia</legend>
-                        <label for='titolo'>Titolo:</label>
-                        <textarea rows='3' cols='50' name='titolo' id='titolo'  maxlenght='150'></textarea><br/>
-                        <label for='descrizione'>Descrizione:</label>
-                        <textarea rows='10' cols='50' name='descrizione' id='descrizione'  maxlenght='500'></textarea><br/>
-                        <label for='fonte'>Fonte:</label>
-                        <input name='fonte' id='fonte' maxlenght='50' /><br/>
-                        <label for='indirizzo'>Link:</label>
-                        <input name='indirizzo' id='indirizzo' maxlenght='200' /><br/>
-                        <label for='data'>Data:</label>
-                        <input name='data' id='data' maxlenght='50' /><br/>
-                        <input type="submit" value="Salva" />
+    </div>
+<?php
+endif;
+?>
+<?php
+if($_GET["azione"]=="inserimentoNews") :
+    ?>
+    <div class="news">
+        <form action="admin.php?azione=inserimentoNews" method="post">
+            <fieldset>
+                <legend>Inserimento Nuova Notizia</legend>
+                <label for='titolo'>Titolo:</label>
+                <textarea rows='3' cols='50' name='titolo' id='titolo'></textarea><br/>
+                <label for='descrizione'>Descrizione:</label>
+                <textarea rows='10' cols='50' name='descrizione' id='descrizione'></textarea><br/>
+                <label for='fonte'>Fonte:</label>
+                <input name='fonte' id='fonte' maxlength='50' /><br/>
+                <label for='indirizzo'>Link:</label>
+                <input name='indirizzo' id='indirizzo' maxlength='200' /><br/>
+                <label for='data'>Data:</label>
+                <input name='data' id='data' maxlength='50' /><br/>
+                <input type="submit" value="Salva" />
 
-                        <input type="reset" value="Cancella"/>
-                    </fieldset>
-                </form>
-
-                <?php
-
-                if(isset($_POST["titolo"])){
-
-                    $titolo = $_POST["titolo"];
-                    $descrizione = $_POST["descrizione"];
-                    $fonte = $_POST["fonte"];
-                    $indirizzo = $_POST["indirizzo"];
-
-                    $data = $_POST["data"];
-                    $query321 = "INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo,data) VALUES ('$titolo','$descrizione','$fonte','$indirizzo','$data');";
-                    echo $query321;
-                    $connessione->query("INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo,data) VALUES ('$titolo','$descrizione','$fonte','$indirizzo','$data');");
-                }
-                ?>
-            </div>
+                <input type="reset" value="Cancella"/>
+            </fieldset>
+        </form>
 
         <?php
-        endif;
-        $connessione->close();
+
+        if(isset($_POST["titolo"])){
+
+            $titolo = $_POST["titolo"];
+            $descrizione = $_POST["descrizione"];
+            $fonte = $_POST["fonte"];
+            $indirizzo = $_POST["indirizzo"];
+
+            $data = $_POST["data"];
+            $query321 = "INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo,data) VALUES ('$titolo','$descrizione','$fonte','$indirizzo','$data');";
+            $connessione->query("INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo,data) VALUES ('$titolo','$descrizione','$fonte','$indirizzo','$data');");
+        }
         ?>
+    </div>
 
-        <?php include('common/footer.php') ?>
+<?php
+endif;
+$connessione->close();
+?>
+
+<?php include('common/footer.php') ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"/>
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </html>
