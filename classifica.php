@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html lang="it">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it">
 <head>
     <!-- meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Classifica piloti e costruttori" />
     <!-- CSS -->
     <link rel="stylesheet" href="../css/style.css">
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <title>Classifica</title>
 
-    <title>HomePage</title>
-    <meta name="description" content="Descrizione sommaria.">
 </head>
 <body class="classifica">
 <main class="content">
@@ -34,14 +34,15 @@
                                     FROM Team INNER JOIN Pilota ON Pilota.id_team = Team.id INNER JOIN Risultati_Gare ON Risultati_Gare.id_pilota = Pilota.matricola
                                     GROUP BY Pilota.id_team
                                     ORDER BY sum(punti) DESC;");
-            if (!$q) {
-                echo "Errore db";
-            } else {
-                echo "<table><th colspan='2'>Team</th><th>Punti</th>";
-                while ($row = $q->fetch_array(MYSQLI_NUM)) {
-                    echo "<tr>" . trovaLogo($row[0]) . "<td>$row[0]</td><td>$row[1]</td></tr>";
+        if(!$q){
+            echo "Errore db";
+        }else{
+                echo "<h3>Classifica Costruttori</h3>";
+                echo "<table summary='Classifica Costruttori'><thead><tr><th colspan='2' scope='colgroup'>Team</th><th scope='col'>Punti</th></tr></thead><tbody>";
+                while($row = $q->fetch_array(MYSQLI_NUM)){
+                    echo "<tr>".trovaLogo($row[0])."<td>$row[0]</td><td>$row[1]</td></tr>";
                 }
-                echo "</table>";
+                echo "</tbody></table>";
             }
         } else {
             $q = $connessione->query("SELECT Pilota.cognome, Pilota.nome, Auto.marca,
@@ -51,17 +52,18 @@
         INNER JOIN Auto ON Team.id_auto = Auto.id
         GROUP BY Risultati_Gare.id_pilota
         ORDER BY SUM(Risultati_Gare.punti) DESC;");
-            if (!$q) {
-                echo "Errore db";
-            } else {
-                echo "<table><th>Pilota</th><th colspan='2'>Auto</th><th>Punti</th>";
-                while ($row = $q->fetch_array(MYSQLI_NUM)) {
-                    $pilota = substr($row[1], 0, 1);
-                    $pilota = "$pilota. $row[0]";
-                    echo "<tr><td>$pilota</td>" . trovaLogo($row[2]) . "<td>$row[2]</td><td>$row[3]</td></tr>";
-                }
-                echo "</table>";
+        if(!$q){
+            echo "Errore db";
+        }else{
+            echo "<h3>Classifica Piloti</h3>";
+            echo "<table summary='Classifica Piloti'>";
+            echo "<thead><tr><th scope='col'>Pilota</th><th colspan='2' scope='colgroup'>Auto</th><th scope='col'>Punti</th></tr></thead><tbody>";
+            while($row = $q->fetch_array(MYSQLI_NUM)){
+                $pilota = substr($row[1],0,1);
+                $pilota = "$pilota. $row[0]";
+                echo "<tr><td>$pilota</td>".trovaLogo($row[2])."<td>$row[2]</td><td>$row[3]</td></tr>";
             }
+        echo "</tbody></table>";
         }
         $connessione->close();
         ?>
