@@ -9,39 +9,48 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <title>News</title>
 </head>
-	<body>
-		<div id="news">
-		<?php
-			include('common/header.html');
-			include('common/menu.html');
-			include('connessione.php'); 
-			if(isset($_POST["email"])) {
-				$connessione->query("INSERT INTO iscritto(email) VALUES ('".$_POST["email"]."');");
-			}
-			$query = "SELECT titolo, descrizione, fonte, indirizzo, data FROM Notizia ORDER BY id DESC;";
-			$ris = $connessione->query($query);
-			if(!$ris) {
-                echo "Errore Database";
-            } else {
-                while($row = $ris->fetch_array(MYSQLI_NUM)) {
-						$link = "<a href='$row[3]'>Continua a leggere</a>";
-                        echo "<p><h3>$row[0]</h3> <h5>Data: $row[4] Fonte: $row[2]</h5><br/><h6>$row[1] $link</h6></p>";
-				}
-			}
-			$connessione->close();
-		?>
-		</div>
-		<div>
-			<form action="news.php" method="post">
-				<fieldset>
-					<legend>Iscriviti alla nostra Newsletter</legend>
-            		<label for="email">E-mail:</label>
-            		<input name="email" id="email" />					
-					<input type="submit" value="Salva" />
-					<input type="reset" value="Cancella"/>
-				</fieldset>
-			</form>
-		</div>
-		<?php include('common/footer.php');?>
-	</body>
+<body class="news">
+<div class="row">
+    <div class="container">
+        <?php
+        session_start();
+        include('common/header.html');
+        include('connessione.php');
+        if (isset($_POST["email"])) {
+            $connessione->query("INSERT INTO iscritto(email) VALUES ('" . $_POST["email"] . "');");
+        }
+        $query = "SELECT titolo, descrizione, fonte, indirizzo, data FROM Notizia ORDER BY id DESC;";
+        $ris = $connessione->query($query);
+        if (!$ris) {
+            echo "Errore Database";
+        } else {
+            while ($row = $ris->fetch_array(MYSQLI_NUM)) :
+                $link = "<a href='$row[3]'>Continua a leggere</a>";
+                ?>
+                <div class="viewNews">
+                    <h2><?php echo $row[0]; ?></h2>
+                    <h6>Data: <?php echo($row[4]); ?></h6>
+                    <h6>Fonte: <?php echo $row[2]; ?></h6>
+                    <p><?php echo $row[1]; ?></p>
+                    <?php echo $link; ?>
+                </div>
+            <?php endwhile;
+        }
+        $connessione->close();
+        ?>
+
+        <form action="news.php" method="post">
+            <fieldset>
+                <fieldset>
+                    <legend>Iscriviti alla nostra Newsletter</legend>
+                    <label for="email">E-mail:</label>
+                    <input name="email" id="email" maxlenght="30"/>
+                    <input type="submit" value="Salva"/>
+                    <input type="reset" value="Cancella"/>
+                </fieldset>
+        </form>
+    </div>
+</div>
+<?php include('common/footer.php'); ?>
+</body>
 </html>

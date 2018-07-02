@@ -4,6 +4,8 @@
 }
 
 html {
+    height: 100%;
+    box-sizing: border-box;
     font-family: sans-serif;
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
@@ -17,6 +19,9 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section, 
 }
 
 body {
+    position: relative;
+    padding-bottom: 6.5rem;
+    min-height: 100%;
     width: 100%;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -159,18 +164,7 @@ textarea {
     resize: vertical;
 }
 
-fieldset {
-    min-width: 0;
-    padding: 0;
-    margin: 0;
-    border: 0;
-}
-
 legend {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    padding: 0;
     margin-bottom: .5rem;
     font-size: 1.5rem;
     line-height: inherit;
@@ -449,7 +443,6 @@ progress {
 }
 
 input.button {
-    border-radius: 0;
     background-color: #179e06;
     border: none;
     color: white;
@@ -460,6 +453,9 @@ input.button {
     font-size: 1.5rem;
     /* margin: 4px 2px; */
     cursor: pointer;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 /******************************************************** MENU ********************************************************/
@@ -469,12 +465,11 @@ input.button {
 
 header[role="banner"] {
     position: relative;
+    margin-top: 0.5rem;
 }
 
-header[role="banner"] .container {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
+header[role="banner"] .container a {
+    float: left;
 }
 
 header[role="banner"] #mobile-menu-toggle {
@@ -490,49 +485,133 @@ header[role="banner"] #mobile-menu-toggle {
     height: 5rem;
 }
 
-.menu-sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
+#navbar {
+    overflow: hidden;
+    background-color: #ffffff;
 }
 
-.menu-sticky #main-desktop-menu {
-    position: relative;
-    z-index: 9999;
+/* Navbar links */
+#navbar a {
+    display: block;
+    float: left;
+    color: #333333;
+    text-align: center;
+    text-decoration: none;
 }
 
 #menu-menu-principale-1 {
+    float: right;
     list-style-type: none;
-    padding: 0;
+    padding: 2rem 0;
+    margin: 0;
 }
+
 #menu-menu-principale-1 .menu-item {
     display: inline-block;
-    width: 24%;
     text-align: center;
-    padding-top: 1rem;
+
 }
+
+#menu-menu-principale-1 .menu-item a {
+    padding: 0.5rem 2rem;
+}
+
+/*
+#menu-menu-principale-1 .menu-item a.active {
+    background-color: #179e06;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -ms-transform: scaleX(.2);
+    -webkit-transform: scaleX(.2);
+    transform: scaleX(.2);
+    -webkit-transition: -webkit-transform .2s ease-out,opacity .2s ease-out;
+    transition: transform .2s ease-out,opacity .2s ease-out;
+}*/
+body.home #menu-menu-principale-1 .menu-item.home {
+    background-color: #179e06;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+body.home #menu-menu-principale-1 .menu-item.home a {
+    color: #ffffff;
+}
+
+body.classifica #menu-menu-principale-1 .menu-item.classifica {
+    background-color: #179e06;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+body.classifica #menu-menu-principale-1 .menu-item.classifica a {
+    color: #ffffff;
+}
+
+body.gara #menu-menu-principale-1 .menu-item.gara {
+    background-color: #179e06;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+body.gara #menu-menu-principale-1 .menu-item.gara a {
+    color: #ffffff;
+}
+
+body.news #menu-menu-principale-1 .menu-item.news {
+    background-color: #179e06;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+body.news #menu-menu-principale-1 .menu-item.news a {
+    color: #ffffff;
+}
+
+#menu-menu-principale-1 .menu-item:hover {
+    background-color: #179e06;
+    -webkit-transition: -webkit-transform .2s ease-out, opacity .2s ease-out;
+    transition: transform .2s ease-out, opacity .2s ease-out;
+}
+
+#menu-menu-principale-1 .menu-item a:hover {
+    color: #ffffff;
+}
+
 #menu-menu-principale-1 .icon-menu {
     display: block;
     margin-bottom: 0;
 }
 
-
 /******************************************************* FOOTER *******************************************************/
 
+#footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
 .ancor {
+    position: relative;
+    bottom: 0;
     width: 100%;
-    background: #2db999;
+    background: #179e06;
     color: #fff;
     padding: 15px 0;
     margin-top: 20px;
+
 }
 
 /******************************************************** HOME ********************************************************/
 
-
 .space {
     margin: 2rem;
 }
+
 .news-home {
     width: 49%;
     margin-bottom: 2%;
@@ -543,33 +622,63 @@ header[role="banner"] #mobile-menu-toggle {
     padding: 20px;
     float: left;
 }
+
 .news-home:nth-child(odd) {
     margin-right: 2%;
 }
 
-/******************************************************** GARA ********************************************************/
-.row .container.gara table {
+/**********************************************************************************************************************/
+.container.gara table {
     width: 100%;
 }
 
-.row .container.gara td, th {
+.container.gara td, th {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
 }
 
-.row .container.gara td:nth-child(3) {
+.container.gara td:nth-child(3) {
     width: 65%;
     border-right: none;
 }
-.row .container.gara td:nth-child(4) {
+
+.container.gara td:nth-child(4) {
     border-left: none;
 }
 
 tr:nth-child(even) {
     background-color: #dddddd;
 }
-.row .container.gara .logoAuto {
+
+.container.gara .logoAuto {
+    max-height: 24px;
+}
+
+.container.classifica table {
+    width: 100%;
+}
+
+.container.classifica td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.container.classifica td:nth-child(2) {
+    width: 65%;
+    border-right: none;
+}
+
+.container.classifica td:nth-child(3) {
+    border-left: none;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.container.classifica .logoAuto {
     max-height: 24px;
 }
 
@@ -578,12 +687,15 @@ tr:nth-child(even) {
     position: relative;
     font-family: Arial;
 }
+
 .custom-select select {
     display: none; /*hide original SELECT element:*/
 }
+
 .select-selected {
     background-color: DodgerBlue;
 }
+
 /*style the arrow inside the select element:*/
 .select-selected:after {
     position: absolute;
@@ -595,13 +707,15 @@ tr:nth-child(even) {
     border: 6px solid transparent;
     border-color: #fff transparent transparent transparent;
 }
+
 /*point the arrow upwards when the select box is open (active):*/
 .select-selected.select-arrow-active:after {
     border-color: transparent transparent #fff transparent;
     top: 7px;
 }
+
 /*style the items (options), including the selected item:*/
-.select-items div,.select-selected {
+.select-items div, .select-selected {
     color: #ffffff;
     padding: 8px 16px;
     border: 1px solid transparent;
@@ -609,6 +723,7 @@ tr:nth-child(even) {
     cursor: pointer;
     user-select: none;
 }
+
 /*style items (options):*/
 .select-items {
     position: absolute;
@@ -618,10 +733,78 @@ tr:nth-child(even) {
     right: 0;
     z-index: 99;
 }
+
 /*hide the items when the select box is closed:*/
 .select-hide {
     display: none;
 }
+
 .select-items div:hover, .same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+.classifica .navigation {
+    display: inline-block;
+    margin: 2rem;
+}
+.classifica .navigation a {
+    margin-right: 2rem;
+    padding: 0.5rem 2rem;
+}
+.classifica .navigation a:nth-child(1) {
+    margin-right: 2rem;
+}
+.classifica .navigation .active {
+    background-color: #179e06;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #fff;
+}
+.classifica .navigation a:hover {
+    background-color: #179e06;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #fff;
+}
+
+.viewNews {
+    padding: 1rem;
+}
+
+.viewNews:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.gara form {
+    margin-bottom: 1rem;
+}
+.gara fieldset {
+    display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 0.35em;
+    padding-bottom: 0.625em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    border: 2px groove #dddddd;
+}
+
+.gara fieldset legend {
+    padding: 0 0.5rem;
+}
+
+.gara fieldset select {
+    height: 3rem;
+    border: 1px solid #000000;
+    padding: 0.5rem 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.gara fieldset .button {
+    margin-left: 1rem;
 }

@@ -9,40 +9,41 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <title>Gare</title>
 </head>
-<body>
-
-<?php include('common/header.html');
-include('common/menu.html');
-include('connessione.php');
-include('funzioni.php');
-if ( ! session_id() )
-    session_start();
-
-
-if (isset($_POST["gara"])) {
-    $gara = explode("-", $_POST["gara"]);
-    $num_gara = $gara[0];
-    $nome_gara = $gara[1];
-} else {
-    $num_gara = 7;
-    $nome_gara = "Rally Italia Sardegna";
-}
-
-?>
-<div class="row">
+<body class="gara">
+<main class="content">
     <div class="container gara">
+        <?php include('common/header.html');
+        include('connessione.php');
+        include('funzioni.php');
+        if (!session_id())
+            session_start();
+
+
+        if (isset($_POST["gara"])) {
+            $gara = explode("-", $_POST["gara"]);
+            $num_gara = $gara[0];
+            $nome_gara = $gara[1];
+        } else {
+            $num_gara = 7;
+            $nome_gara = "Rally Italia Sardegna";
+        }
+
+        ?>
+
+
         <form action="gare.php" method="post">
             <fieldset>
                 <legend>Selezione Gare</legend>
-                <label for="gara">Gara:</label>
-                <select name="gara" id="gara">
+                <select name="gara">
                     <?php
                     $ris = $connessione->query("SELECT Gara.id, Pista.nome
                         FROM Gara INNER JOIN Pista ON Gara.id_pista = Pista.id
                         ORDER BY Gara.id;");
                     if ($ris) {
                         while ($row = $ris->fetch_array(MYSQLI_NUM)) {
-                            echo "<option value='$row[0]-$row[1]'>$row[0] - $row[1]</option>";
+                            echo "<option value='$row[0]-$row[1]'";
+                            if ($row[0] == $num_gara) echo " selected='selected'";
+                            echo ">$row[0] - $row[1]</option>";
                         }
                     }
                     ?>
