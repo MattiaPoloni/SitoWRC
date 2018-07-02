@@ -9,6 +9,9 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
     <title>Amministrazione</title>
 
+<script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+           <script src="/js/admin.js" type="text/javascript"> </script>
 </head>
 <body>
 
@@ -211,7 +214,7 @@ if($_GET["azione"]=="modificaGare") :
                         echo '<input type="hidden" name="idPista" value="'.$row3["pistaId"].'">';
                         echo '<input type="hidden" name="idGara" value="'.$row3["garaId"].'">';
                     }?>
-                    <input type="submit" name="applica" value="Applica modifiche"/>
+                    <button type="submit" name="applica" value="Applica modifiche" id="applicaModificheGara">Applica Modifiche </button>
                     <input type="reset" value="Cancella"/>
                 </fieldset>
             </form>
@@ -254,7 +257,7 @@ if($_GET["azione"]=="inserimentoNews") :
                 <input name='indirizzo' id='indirizzo' maxlength='200' /><br/>
                 <label for='data'>Data:</label>
                 <input name='data' id='data' maxlength='50' /><br/>
-                <input type="submit" value="Salva" />
+                <input type="submit" value="Salva" id="inserisciNews"/>
 
                 <input type="reset" value="Cancella"/>
             </fieldset>
@@ -282,7 +285,6 @@ $connessione->close();
 ?>
 
 <?php include('common/footer.php') ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"/>
 </body>
 
 </html>

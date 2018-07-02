@@ -808,3 +808,11 @@ tr:nth-child(even) {
 .gara fieldset .button {
     margin-left: 1rem;
 }
+
+input.invalid, textarea.invalid{
+    border: 2px solid red;
+}
+
+input.valid, textarea.valid{
+    border: 2px solid green;
+}
