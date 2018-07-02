@@ -12,20 +12,27 @@
     <meta name="description" content="Descrizione sommaria.">
 </head>
 <body>
-<?php include('common/header.html') ?>
-<?php include('common/menu.html') ?>
-<?php include "connessione.php"; ?>
-<?php include "session.php"; ?>
-<?php require "funzioni.php";?>
+<?php include('common/header.html'); ?>
+<?php include('common/menu.html'); ?>
+<?php include ("connessione.php"); ?>
+<?php include ("session.php"); ?>
+<?php require ("funzioni.php");?>
 
 <?php
 //if ($_SESSION['login_user'] != '') :
 
+?>
+<h1>Welcome <?php echo $_SESSION['login_user']; ?></h1>
+<h2><a href="logout.php">Sign Out</a></h2>
+<div class="azioni">
+<a href="admin.php?azione=inserimentoRisultati">Inserimento Risultati</a>
+<a href="admin.php?azione=modificaGare">Modifica infomazioni gare</a>
+<a href="admin.php?azione=inserimentoNews">Inserimento News</a>
+</div>
+<?php
+if($_GET["azione"]=="inserimentoRisultati") :
     ?>
-
-    <h2><a href="logout.php">Sign Out</a></h2>
     <div class="risultati">
-        <h3>Inserimento dei risultati:</h3>
 
         <form method="post">
 
@@ -44,10 +51,11 @@
                     <?php
                     while ($row = $gara->fetch_assoc()) : ?>
 
-                        <option value="<?php echo $row["id"].'" ' ?>
+                        <option value="<?php echo $row["id"] ?>"
                      <?php if(isset($_POST['gara']) && $_POST['gara'] == $row["id"])
-                            echo ' selected= "selected"';
-                        ?>"><?php echo $row["nome"]." ".$row["giorno"] ?></option>
+                         echo ' selected= "selected"';
+                        ?>>
+                            <?php echo $row["nome"]." ".$row["giorno"] ?></option>
                     <?php endwhile; ?>
                 </select>
             <?php else :
@@ -145,8 +153,12 @@
         ?>
     </div>
     </br>
-
-
+<?php
+endif;
+?>
+<?php
+if($_GET["azione"]=="modificaGare") :
+    ?>
     <div class="modifica">
         <h3> Modifica gare: </h3></br>
 
@@ -158,24 +170,24 @@
             //$mysqli->connect();
             $pista = $connessione->query($select);
             if (mysqli_num_rows($pista) > 0) :
-            // output data of each row
-            ?>
-            <select name="garaScelta">
-                <?php
-                while ($rower = $pista->fetch_assoc()) : ?>
-                <option value="<?php echo $rower["id"] ?>
+                // output data of each row
+                ?>
+                <select name="garaScelta">
+                    <?php
+                    while ($rower = $pista->fetch_assoc()) : ?>
+                        <option value="<?php echo $rower["id"] ?>
                             <?php if(isset($_POST['garaScelta']) && $_POST['garaScelta'] == $rower["id"]) {
-                    echo '" selected = "selected';
-                }
-                ?>" >
-                <?php echo $rower["nome"]." ".$rower["giorno"] ?></option>
+                            echo '" selected = "selected';
+                        }
+                        ?>" >
+                            <?php echo $rower["nome"]." ".$rower["giorno"] ?></option>
                     <?php endwhile; ?>
                 </select>
             <?php else :
-                    echo "0 results";
-                endif;
-                ?>
-            <input type="submit" name="modifica" value="modifica">Modifica</input>
+                echo "0 results";
+            endif;
+            ?>
+            <input type="submit" name="modifica" value="Modifica"/>
             <input type="reset" value="Cancella"/>
         </form>
         <?php
@@ -215,39 +227,51 @@
         ?>
 
     </div>
-
-    <div class="news">
-        <form action="admin.php" method="post">
-            <fieldset>
-                <legend>Inserimento Nuova Notizia</legend>
-                <label for='titolo'>Titolo:</label>
-                <textarea rows='3' cols='50' name='titolo' id='titolo'  maxlenght='150'></textarea><br/>
-                <label for='descrizione'>Descrizione:</label>
-                <textarea rows='10' cols='50' name='descrizione' id='descrizione'  maxlenght='500'></textarea><br/>
-                <label for='fonte'>Fonte:</label>
-                <input name='fonte' id='fonte' maxlenght='50' /><br/>
-                <label for='indirizzo'>Link:</label>
-                <input name='indirizzo' id='indirizzo' maxlenght='200' /><br/>
-                <input type="submit" value="Salva" />
-                <input type="reset" value="Cancella"/>
-            </fieldset>
-        </form>
-
-        <?php
-        include('connessione.php');
-        if(isset($_POST["titolo"])){
-            $titolo = $_POST["titolo"];
-            $descrizione = $_POST["descrizione"];
-            $fonte = $_POST["fonte"];
-            $indirizzo = $_POST["indirizzo"];
-            $connessione->query("INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo) VALUES ('$titolo','$descrizione','$fonte','$indirizzo');");
-        }
-        ?>
-    </div>
+<?php
+endif;
+?>
+<?php
+if($_GET["azione"]=="inserimentoNews") :
+?>
+<div class="news">
+    <form action="admin.php" method="post">
+        <fieldset>
+            <legend>Inserimento Nuova Notizia</legend>
+            <label for='titolo'>Titolo:</label>
+            <textarea rows='3' cols='50' name='titolo' id='titolo'  maxlenght='150'></textarea><br/>
+            <label for='descrizione'>Descrizione:</label>
+            <textarea rows='10' cols='50' name='descrizione' id='descrizione'  maxlenght='500'></textarea><br/>
+            <label for='fonte'>Fonte:</label>
+            <input name='fonte' id='fonte' maxlenght='50' /><br/>
+            <label for='indirizzo'>Link:</label>
+            <input name='indirizzo' id='indirizzo' maxlenght='200' /><br/>
+            <label for='data'>Data:</label>
+            <input name='data' id='data' maxlenght='50' /><br/>
+            <input type="submit" value="Salva" />
+            <input type="reset" value="Cancella"/>
+        </fieldset>
+    </form>
 
     <?php
-    $connessione->close();
+    echo "fuori";
+    if(isset($_POST["titolo"])){
+        echo "dentro";
+        $titolo = $_POST["titolo"];
+        $descrizione = $_POST["descrizione"];
+        $fonte = $_POST["fonte"];
+        $indirizzo = $_POST["indirizzo"];
+        $data = $_POST["data"];
+        $query321 = "INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo,data) VALUES ('$titolo','$descrizione','$fonte','$indirizzo','$data');";
+        echo $query321;
+        $connessione->query("INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo,data) VALUES ('$titolo','$descrizione','$fonte','$indirizzo','$data');");
+    }
     ?>
+</div>
+
+<?php
+endif;
+$connessione->close();
+?>
 
 
 
