@@ -442,7 +442,7 @@ progress {
         max-width: 100%;
     }
 }
-
+/*
 input.button {
     background-color: #179e06;
     border: none;
@@ -452,12 +452,11 @@ input.button {
     text-decoration: none;
     display: inline-block;
     font-size: 1.5rem;
-    /* margin: 4px 2px; */
     cursor: pointer;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-}
+}*/
 
 /******************************************************** MENU ********************************************************/
 #main-menu {
@@ -1025,6 +1024,7 @@ select.invalid {
     margin-top: 1rem;
 }
 
+/*
 form input.button {
     background-color: #179e06;
     border: none;
@@ -1038,7 +1038,7 @@ form input.button {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-}
+}*/
 
 #email {
     border: 1px solid #000;
@@ -1079,6 +1079,14 @@ form input.button {
 }
 
 #ins, #insN, #mod {
+    padding: 0.5rem;
+}
+#ins:hover, #insN:hover, #mod:hover {
+    background-color: #179e06;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #fff;
     padding: 0.5rem;
 }
 
@@ -1142,6 +1150,10 @@ form input.button {
 
 .modifica form:nth-of-type(2) fieldset .modG {
     width: 20%;
+}
+
+.azioni {
+    margin-bottom: 1rem;
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
