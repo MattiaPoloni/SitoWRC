@@ -7,6 +7,7 @@
     <meta name="description" content="Pagina Amministrazione"/>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/print.css" media="print">
     <title>Amministrazione</title>
 
     <script
