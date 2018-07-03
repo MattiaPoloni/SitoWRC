@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/slide.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/slide.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -64,9 +64,10 @@
     </div>
 
     <div class="gallery">
-        <a tabindex="1"><img src="immagini_index/1.jpg"></a>
-        <a tabindex="1"><img src="immagini_index/2.jpg"></a>
-        <a tabindex="1"><img src="immagini_index/3.jpg"></a>
+        <a tabindex="1"><img src="media/1.jpg" alt="foto gara 1"></a>
+        <a tabindex="1"><img src="media/2.jpg" alt="foto gara 2"></a>
+        <a tabindex="1"><img src="media/3.jpg" alt="foto gara 3"></a>
+        <a tabindex="1"><img src="media/3.jpg" alt="foto gara 4"></a>
         <span class="close"></span>
     </div>
 
