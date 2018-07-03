@@ -23,7 +23,7 @@
         <div class="container">
             <p>&copy; <?php auto_copyright("2018"); ?> Sito WRC News.</p>
             <?php if (!isset($_SESSION['login_user'])) : ?>
-                <a href="../login.php">Login</a>
+                Accedi come Amministratore:<a href="login.php">Login</a>
             <?php elseif ($_SERVER['REQUEST_URI'] == "admin.php?azione=deault" || $_SERVER['REQUEST_URI'] == "admin.php?azione=deault" || $_SERVER['REQUEST_URI'] == "admin.php?azione=modificaGare" || $_SERVER['REQUEST_URI'] == "admin.php?azione=inserimentoNews" || $_SERVER['REQUEST_URI'] == "admin.php?azione=inserimentoRisultati") : ?>
                 <a href="logout.php">Sign Out</a>
             <?php else : ?>
