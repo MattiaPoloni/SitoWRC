@@ -7,6 +7,7 @@
     <meta name="description" content="Risultati Gare Disputate"/>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/print.css" media="print">
     <title>Gare</title>
 </head>
 <body class="gara">
