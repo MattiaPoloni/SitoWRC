@@ -81,10 +81,6 @@ $(document).ready(function () {
     $('[name^="p"]').change(function () {
         checkSelects();
     });
-
-    $('#visualizzaRisultati').on('click', function () {
-        checkSelects();
-    });
 });
 
 function checkSelects() {
