@@ -65,6 +65,7 @@
             }
         echo "</tbody></table>";
         }
+    }
         $connessione->close();
         ?>
     </div>
