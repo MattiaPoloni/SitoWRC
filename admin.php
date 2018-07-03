@@ -64,7 +64,7 @@
                     endif;
                     ?>
                     <?php
-                    echo '<input class="button" type="submit" name="garaSelezionata" value="Posizioni"/>';
+                    echo '<input class="button" id="visualizzaRisultati" type="submit" name="garaSelezionata" value="Posizioni"/>';
                     echo "</br>";
                     ?>
                     <?php
@@ -111,7 +111,7 @@
                     }*/
                     ?>
 
-                    <button type="submit" name="save" value="save">Carica</button>
+                    <button type="submit" name="save" value="save" id="inserisciRisultati">Carica</button>
                     <input class="button" type="reset" value="Cancella"/>
                 </fieldset>
             </form>
@@ -288,3 +288,4 @@
 </body>
 
 </html>
+
