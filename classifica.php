@@ -54,15 +54,16 @@
         ORDER BY SUM(Risultati_Gare.punti) DESC;");
         if(!$q){
             echo "Errore db";
-        }else{
+        }else {
             echo "<h3>Classifica Piloti</h3>";
             echo "<table summary='Classifica Piloti'>";
             echo "<thead><tr><th scope='col'>Pilota</th><th colspan='2' scope='colgroup'>Auto</th><th scope='col'>Punti</th></tr></thead><tbody>";
-            while($row = $q->fetch_array(MYSQLI_NUM)){
-                $pilota = substr($row[1],0,1);
+            while ($row = $q->fetch_array(MYSQLI_NUM)) {
+                $pilota = substr($row[1], 0, 1);
                 $pilota = "$pilota. $row[0]";
-                echo "<tr><td>$pilota</td>".trovaLogo($row[2])."<td>$row[2]</td><td>$row[3]</td></tr>";
+                echo "<tr><td>$pilota</td>" . trovaLogo($row[2]) . "<td>$row[2]</td><td>$row[3]</td></tr>";
             }
+        }
         echo "</tbody></table>";
         }
     }
