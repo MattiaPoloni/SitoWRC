@@ -85,7 +85,6 @@ $(document).ready(function () {
     $('#visualizzaRisultati').on('click', function () {
         checkSelects();
     });
-
 });
 
 function checkSelects() {

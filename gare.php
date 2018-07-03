@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <link rel="stylesheet" type="text/css" href="css/print.css" media="print">
     <title>Gare</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
 </head>
 <body class="gara">
 <div class="content">
@@ -66,7 +67,7 @@
                 echo "Gara Non Ancora Disputata";
             else {
                 echo "<table summary='Tabella contente i risultati relativi alla gara $nome_gara'><thead>";
-                echo "<tr><th scope='col'>Posizione</th><th scope='col'>Pilota</th><th colspan='2' scope='colgroup'>Auto</th><th scope='col'>Punti</th></tr>";
+                echo "<tr><th scope='col'>Posizione</th><th scope='col'>Pilota</th><th id='imgAuto' colspan='2' scope='colgroup'>Auto</th><th scope='col'>Punti</th></tr>";
                 echo "</thead><tbody>";
                 while ($row = $ris->fetch_array(MYSQLI_NUM)) {
                     if ($row[0] == 99)
@@ -86,6 +87,18 @@
 </div>
 <?php include('common/footer.php'); ?>
 </body>
-
+<script>
+    var tid = setTimeout(mycode, 0);
+    function mycode() {
+        if($( window ).width() > 575) {
+            $('#imgAuto').attr('colspan',2);
+        }
+        else {
+            console.log('buzo colspan');
+            $('#imgAuto').attr('colspan',1);
+        }
+        tid = setTimeout(mycode, 100);
+    }
+</script>
 
 </html>

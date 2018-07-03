@@ -56,8 +56,8 @@
             echo "Errore db";
         }else {
             echo "<h3>Classifica Piloti</h3>";
-            echo "<table summary='Classifica Piloti'>";
-            echo "<thead><tr><th scope='col'>Pilota</th><th colspan='2' scope='colgroup'>Auto</th><th scope='col'>Punti</th></tr></thead><tbody>";
+            echo "<table id='classificaPiloti' summary='Classifica Piloti'>";
+            echo "<thead><tr><th scope='col'>Pilota</th><th id='classificaPilotiImg' colspan='2' scope='colgroup'>Auto</th><th scope='col'>Punti</th></tr></thead><tbody>";
             while ($row = $q->fetch_array(MYSQLI_NUM)) {
                 $pilota = substr($row[1], 0, 1);
                 $pilota = "$pilota. $row[0]";
@@ -81,5 +81,18 @@
             $('#costruttori').addClass("active");
         }
     });
+
+    var tid = setTimeout(mycode, 0);
+    function mycode() {
+        if($( window ).width() > 575) {
+            $('#classificaPilotiImg').attr('colspan',2);
+        }
+        else {
+            console.log('buzo colspan');
+            $('#classificaPilotiImg').attr('colspan',1);
+        }
+        tid = setTimeout(mycode, 100);
+    }
+
 </script>
 </html>

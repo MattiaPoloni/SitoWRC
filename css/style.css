@@ -891,7 +891,7 @@ tr:nth-child(even) {
 
 input.invalid, textarea.invalid {
     border: 2px solid red;
-	background-color: #FFCCCC;
+    background-color: #FFCCCC;
 }
 
 input.valid, textarea.valid {
@@ -900,7 +900,7 @@ input.valid, textarea.valid {
 
 select.invalid {
     border-color: red;
-	background-color: #FFCCCC;
+    background-color: #FFCCCC;
 }
 
 .contPiloti {
@@ -1024,7 +1024,6 @@ select.invalid {
     margin-top: 1rem;
 }
 
-
 #visualizzaRisultati {
 
 }
@@ -1085,6 +1084,7 @@ form input.button {
 #ins, #insN, #mod {
     padding: 0.5rem;
 }
+
 #ins:hover, #insN:hover, #mod:hover {
     background-color: #179e06;
     -webkit-border-radius: 3px;
@@ -1242,14 +1242,42 @@ form input.button {
     .modifica form:nth-of-type(2) fieldset .modG {
         width: 100%;
     }
+
     .modifica form:nth-of-type(1) fieldset select {
         width: 100%;
         font-size: 0.59rem;
         padding: 0;
     }
+
     .modifica form:nth-of-type(2) fieldset {
         margin: 1rem 0 0 0;
     }
 
-}
+    .gara form fieldset select {
+        height: 2rem;
+        padding: 0 0.1rem;
+        font-size: 0.6rem;
+    }
+    .gara fieldset .button {
+        margin: 1rem 0 0 0;
+    }
+    .container.gara td:nth-child(3) {
+        display: none;
+    }
+    .container.classifica #classificaPiloti td:nth-child(2) {
+        display: none;
+    }
 
+    .classifica .navigation a {
+        margin: 0 0 1rem 0 !important;
+        display: block;
+        text-align: center;
+    }
+    #email {
+        width: 78%;
+    }
+    #admin h1 {
+        margin-top: 4rem;
+    }
+
+}
