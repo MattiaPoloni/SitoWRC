@@ -10,7 +10,7 @@
     <title>Gare</title>
 </head>
 <body class="gara">
-<main class="content">
+<div class="content">
     <div class="container gara">
         <?php include('common/header.html');
         include('connessione.php');
