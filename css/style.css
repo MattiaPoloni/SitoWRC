@@ -892,10 +892,16 @@ tr:nth-child(even) {
 
 input.invalid, textarea.invalid {
     border: 2px solid red;
+	background-color: #FFCCCC;
 }
 
 input.valid, textarea.valid {
     border: 2px solid green;
+}
+
+select.invalid {
+    border-color: red;
+	background-color: #FFCCCC;
 }
 
 .contPiloti {
@@ -1230,3 +1236,4 @@ form input.button {
     }
 
 }
+
