@@ -126,17 +126,18 @@ label {
 }
 
 button {
-    border-radius: 0;
-    background-color: #4CAF50;
+    background-color: #179e06;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 0.5rem 1.2rem;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    font-size: 1.5rem;
     cursor: pointer;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 button:focus {
@@ -1037,6 +1038,106 @@ form input.button {
     border: 1px solid #000;
 }
 
+.risultati fieldset legend {
+    padding: 0 0.5rem;
+}
+
+.risultati label {
+    width: 15%;
+}
+
+.risultati #risultati {
+    height: 3rem;
+    border: 1px solid #000000;
+    padding: 0.5rem 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+.risultati fieldset select {
+    border: 1px solid #000000;
+}
+
+.risultati fieldset .button {
+    margin: 0 0 1rem 0;
+    padding: 0.7rem 1.2rem;
+}
+
+.risultati fieldset button {
+    margin: 1rem 1rem 0 0;
+    padding: 0.7rem 1.2rem;
+}
+
+#ins, #insN, #mod {
+    padding: 0.5rem;
+}
+
+#ins.active, #insN.active, #mod.active {
+    background-color: #179e06;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #fff;
+    padding: 0.5rem;
+}
+
+.modifica fieldset legend {
+    padding: 0 0.5rem;
+}
+
+.news fieldset legend {
+    padding: 0 0.5rem;
+}
+
+.news fieldset label {
+    width: 17%;
+    vertical-align: top;
+}
+
+.news fieldset textarea, input {
+    border: 1px solid #000000;
+}
+
+.news fieldset .button {
+    margin: 1rem 1rem 1rem 0;
+    padding: 0.7rem 1.2rem;
+}
+
+.modifica fieldset .button {
+    margin: 0 0 1rem 0;
+    padding: 0.7rem 1.2rem;
+}
+
+.modifica fieldset button {
+    margin: 1rem 1rem 1rem 0;
+    padding: 0.7rem 1.2rem;
+}
+
+.modifica form:nth-of-type(1) fieldset select {
+    height: 3rem;
+    border: 1px solid #000000;
+    padding: 0.5rem 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+.modifica form:nth-of-type(2) fieldset {
+    border: none;
+    margin: 1rem;
+}
+
+.modifica form:nth-of-type(2) fieldset .modG {
+    width: 20%;
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
     #logo-main {
         height: 4rem;
@@ -1044,6 +1145,14 @@ form input.button {
 
     #menu-menu-principale-1 {
         padding: 1rem 0;
+    }
+
+    .risultati label {
+        width: 22%;
+    }
+
+    .modifica form:nth-of-type(2) fieldset .modG {
+        width: 100%;
     }
 }
 
@@ -1059,9 +1168,22 @@ form input.button {
     #menu-menu-principale-1 .menu-item a {
         padding: 0.5rem 1rem;
     }
+
+    .risultati label {
+        width: 28%;
+    }
+
+    .risultati #risultati {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .modifica form:nth-of-type(2) fieldset .modG {
+        width: 100%;
+    }
 }
 
-@media (min-width: 575px) {
+@media (max-width: 575px) {
     .navigation {
         padding-top: 5rem;
     }
@@ -1073,4 +1195,38 @@ form input.button {
     .viewNews:nth-of-type(1) {
         margin-top: 5rem;
     }
+
+    .risultati label {
+        width: 53%;
+    }
+
+    .risultati #risultati {
+        width: 100%;
+        margin-bottom: 1rem;
+        padding: 0;
+        font-size: 0.7rem;
+    }
+
+    .azioni a {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+
+    .news fieldset label:nth-of-type(1), label:nth-of-type(2) {
+        display: block;
+    }
+
+    .modifica form:nth-of-type(2) fieldset .modG {
+        width: 100%;
+    }
+    .modifica form:nth-of-type(1) fieldset select {
+        width: 100%;
+        font-size: 0.59rem;
+        padding: 0;
+    }
+    .modifica form:nth-of-type(2) fieldset {
+        margin: 1rem 0 0 0;
+    }
+
 }

@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it">
 <head>
     <!-- meta tags -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="Risultati Gare Disputate" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Risultati Gare Disputate"/>
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
     <title>Gare</title>
 </head>
 <body class="gara">
@@ -18,7 +18,6 @@
         if (!session_id())
             session_start();
 
-
         if (isset($_POST["gara"])) {
             $gara = explode("-", $_POST["gara"]);
             $num_gara = $gara[0];
@@ -29,7 +28,6 @@
         }
 
         ?>
-
 
         <form action="gare.php" method="post">
             <fieldset>
@@ -48,7 +46,7 @@
                     }
                     ?>
                 </select>
-                <input class="button" type="submit" value="Cerca" />
+                <input class="button" type="submit" value="Cerca"/>
             </fieldset>
         </form>
         <?php
