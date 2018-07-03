@@ -1,28 +1,40 @@
 body {
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:14px;
-}
-label {
-    font-weight:bold;
-    width:100px;
-    font-size:14px;
-}
-.box {
-    border:#666666 solid 1px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
 }
 
+label {
+    display: inline-block;
+    font-weight: bold;
+    width: 80px;
+    font-size: 14px;
+}
+
+.box {
+    border: #666666 solid 1px;
+}
 
 .main {
     width: 300px;
     margin: 0 auto;
     border: 1px solid #333333;
 }
+
 .main h4 {
     background-color: #333333;
     color: #FFFFFF;
     padding: 3px;
     margin: 0;
 }
+
 .formLogin {
     padding: 1rem;
+}
+
+p {
+    margin: 0.6rem;
+}
+
+input {
+    border: 1px solid #000000;
 }
