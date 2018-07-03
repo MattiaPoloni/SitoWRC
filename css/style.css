@@ -442,7 +442,7 @@ progress {
         max-width: 100%;
     }
 }
-/*
+
 input.button {
     background-color: #179e06;
     border: none;
@@ -456,7 +456,7 @@ input.button {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-}*/
+}
 
 /******************************************************** MENU ********************************************************/
 #main-menu {
@@ -549,14 +549,14 @@ body.gara #menu-menu-principale-1 .menu-item.gara a {
     color: #ffffff;
 }
 
-body.news #menu-menu-principale-1 .menu-item.news {
+body.newsBody #menu-menu-principale-1 .menu-item.news {
     background-color: #179e06;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
 
-body.news #menu-menu-principale-1 .menu-item.news a {
+body.newsBody #menu-menu-principale-1 .menu-item.news a {
     color: #ffffff;
 }
 
@@ -1024,7 +1024,11 @@ select.invalid {
     margin-top: 1rem;
 }
 
-/*
+
+#visualizzaRisultati {
+
+}
+
 form input.button {
     background-color: #179e06;
     border: none;
@@ -1038,7 +1042,7 @@ form input.button {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-}*/
+}
 
 #email {
     border: 1px solid #000;
