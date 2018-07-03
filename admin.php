@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content="Pagina Amministrazione"/>
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <title>Amministrazione</title>
 
     <script
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
-    <script src="/js/admin.js" type="text/javascript"></script>
+    <script src="js/admin.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="container">
