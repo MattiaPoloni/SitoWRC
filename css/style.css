@@ -904,6 +904,21 @@ select.invalid {
     background-color: #FFCCCC;
 }
 
+button.disabled {
+	background-color: #999999;
+    border: none;
+    color: #000000;
+    padding: 0.2rem 0.8rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
 .contPiloti {
     padding-top: 1.5rem;
     background-color: #dddddd;
