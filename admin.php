@@ -14,7 +14,7 @@
             src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
     <script src="js/admin.js" type="text/javascript"></script>
 </head>
-<body>
+<body id="admin">
 <div class="container">
     <?php include('common/header.html') ?>
     <?php include "connessione.php"; ?>

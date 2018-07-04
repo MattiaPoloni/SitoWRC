@@ -62,10 +62,9 @@
     </div>
 
     <div class="gallery">
-        <a tabindex="1"><img src="media/1.jpg" alt="foto gara 1"></a>
-        <a tabindex="1"><img src="media/2.jpg" alt="foto gara 2"></a>
-        <a tabindex="1"><img src="media/4.jpg" alt="foto gara 4"></a>
-        <span class="close"></span>
+        <img src="media/1.jpg" alt=""/>
+        <img src="media/2.jpg" alt=""/>
+        <img src="media/4.jpg" alt=""/>
     </div>
 
 
