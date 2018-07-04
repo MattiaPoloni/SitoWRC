@@ -88,7 +88,8 @@
 <?php include('common/footer.php'); ?>
 </body>
 <script>
-    var tid = setTimeout(mycode, 0);
+    var tid;
+    tid = setTimeout(mycode, 0);
     function mycode() {
         if($( window ).width() > 575) {
             $('#imgAuto').attr('colspan',2);
@@ -99,6 +100,12 @@
         }
         tid = setTimeout(mycode, 100);
     }
+
+    window.onbeforeprint = function() {
+        clearTimeout(tid);
+        $('#imgAuto').attr('colspan',1);
+    };
+
 </script>
 
 </html>

@@ -4,7 +4,6 @@
 }
 
 html {
-    height: 100%;
     box-sizing: border-box;
     font-family: sans-serif;
     line-height: 1.15;
@@ -20,9 +19,9 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section, 
 
 body {
     position: relative;
-    padding-bottom: 6.5rem;
-    min-height: 100%;
+    min-height: auto;
     width: 100%;
+    padding-bottom: 0;
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 1rem;
@@ -541,7 +540,7 @@ body.classifica #menu-menu-principale-1 .menu-item.classifica {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
-    
+
 }
 
 body.classifica #menu-menu-principale-1 .menu-item.classifica a {
@@ -609,21 +608,76 @@ body.news #menu-menu-principale-1 .menu-item.news a {
 
 /************************************************** MENU MOBILE *******************************************************/
 
+.home a {
+    display: initial;
+}
+.slider.content {
+    display: none;
+}
+.home .piloti {
+    width: 33.33%;
+    float: left;
+    text-align: center;
+    font-size: 2rem;
+    background-color: #fff;
+    padding: 2rem 0 1rem 0;
+}
+.home .piloti:last-of-type {
+    border-bottom: 2px dashed !important;
+}
+.news-home {
+    margin-top: 5cm;
+}
+
+.container.gara a {
+    display: initial;
+}
+
 #logo-main-mobile {
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+.container.gara {
+    margin-top: 1cm;
+}
+#navbar {
     display: none;
 }
 
 #burger {
-    display: none;
+    display: none !important;
 }
 
 #burgerS {
-    display: none;
+    display: none !important;
 }
 
 #burgerN {
+    display: none !important;
+}
+.container.classifica #logo-main-mobile {
+    display: initial;
+
+}
+.classifica .navigation {
     display: none;
 }
+.container.classifica a {
+    display: initial;
+}
+.newsBody a {
+    display: initial;
+}
+.viewNews {
+    margin-top: 0 !important;
+}
+.viewNews a[href^="http://"]:after, a[href^="https://"]:after {
+    content: " (" attr(href) ")";
+    color: blue;
+    font-size: small;
+}
+
 
 @media (max-width: 575px) {
     #navbar {
@@ -783,13 +837,13 @@ body.news #menu-menu-principale-1 .menu-item.news a {
     border: 1px solid #000;
     text-align: left;
     padding: 8px;
-    
+
 }
 
 .container.gara td:nth-child(3) {
     width: 65%;
     width: 50cm;
-    
+    display: none;
 }
 
 .container.gara td:nth-child(4) {
@@ -808,7 +862,7 @@ tr:nth-child(even) {
 }
 .container.gara .logoAuto {
     max-height: 24px;
-    
+
 }
 
 .container.classifica table {
@@ -836,13 +890,9 @@ tr:nth-child(even) {
 
 .container.classifica .logoAuto {
     max-height: 24px;
-    
+
 }
 
-.classifica .navigation {
-    display: inline-block;
-    margin: 2rem;
-}
 
 .classifica .navigation a {
     margin-right: 2rem;
@@ -940,10 +990,6 @@ input.valid, textarea.valid {
 
 }
 
-.piloti:last-child {
-    margin-bottom: 2rem;
-}
-
 .piloti .punti {
     font-size: 1.5rem;
 }
@@ -959,7 +1005,7 @@ input.valid, textarea.valid {
     height: 150px;
     position: relative;
     width: 33%;
-    
+
 }
 
 .gallery a img {
@@ -988,7 +1034,7 @@ input.valid, textarea.valid {
     -o-transition-duration: 0.5s;
     transition-property: width, height, top, bottom, left, right, z-index, border;
     transition-duration: 0.5s;
-    
+
 }
 
 .gallery a:focus img {
