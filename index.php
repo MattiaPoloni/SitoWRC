@@ -8,7 +8,7 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <link rel="stylesheet" href="css/slide.css">
-    <link rel="stylesheet" type="text/css" href="css/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <title>Homepage - WRC News</title>
 </head>

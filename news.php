@@ -7,7 +7,7 @@
 	<meta name="description" content="News Dal Mondo WRC." />
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-	<link rel="stylesheet" type="text/css" href="css/print.css" media="print">
+	<link rel="stylesheet" type="text/css" href="css/print.css" media="print /">
     <title>News</title>
 </head>
 <body class="newsBody">
