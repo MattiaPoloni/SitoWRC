@@ -463,17 +463,17 @@ input.button {
     text-align: center;
 }
 
-header[role="banner"] {
+#banner {
     position: relative;
     margin-top: 1.5rem;
     margin-left: 0.5rem;
 }
 
-header[role="banner"] .container a {
+#banner .container a {
     float: left;
 }
 
-header[role="banner"] #mobile-menu-toggle {
+#banner #mobile-menu-toggle {
     display: none;
     position: absolute;
     left: 20px;

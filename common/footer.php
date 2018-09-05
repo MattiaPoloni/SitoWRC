@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="it">
-
 <?php function auto_copyright($year = 'auto')
 { ?>
     <?php if (intval($year) == 'auto') {
@@ -32,5 +29,3 @@
         </div>
     </div>
 </footer>
-
-</html>
