@@ -29,21 +29,24 @@ endif;
 <html xmlns="http://www.w3.org/1999/xhtml" lang="it">
 
 <head>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content="Login"/>
+    <title>Login</title>
 </head>
 
 <body>
 
-<main class="main">
+<div class="main">
     <h4>Login</h4>
 
     <form action="" method="post" class="formLogin">
-        <label>Nome :</label><input type="text" name="username" class="box"/><br/><br/>
-        <label>Password :</label><input type="password" name="password" class="box"/><br/><br/>
-        <input type="submit" value=" Submit "/><br />
+        <div>
+            <label>Nome :</label><input type="text" name="username" class="box"/><br/><br/>
+            <label>Password :</label><input type="password" name="password" class="box"/><br/><br/>
+            <input type="submit" value=" Submit "/><br />
+        </div>
     </form>
 
     <?php if ($flag === true) : ?>
@@ -51,7 +54,7 @@ endif;
     <?php endif; ?>
 
     <p>Non sei un amministratore?<br /> Torna all'<a href="index.php">HOME</a> per poter leggere le più interessanti news.</p>
-</main>
+</div>
 
 </body>
 </html>

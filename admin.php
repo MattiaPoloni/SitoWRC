@@ -92,7 +92,7 @@
 
                             echo 'value="99">RIT</option>'; ?>
                             <?php echo "</select>"; ?>
-                            <br/>
+                            <br />
                             <?php
                             $j++;
                         endwhile; ?>
