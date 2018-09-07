@@ -7,7 +7,7 @@
 	<meta name="description" content="Classifica piloti e costruttori" />
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-	<link rel="stylesheet" type="text/css" href="css/print.css" media="print">
+	<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
