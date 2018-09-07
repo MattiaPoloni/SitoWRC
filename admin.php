@@ -66,7 +66,7 @@
                     ?>
                     <?php
                     echo '<input class="button" id="visualizzaRisultati" type="submit" name="garaSelezionata" value="Posizioni"/>';
-                    echo "</br>";
+                    echo "<br />";
                     ?>
                     <?php
 
@@ -100,7 +100,7 @@
 
                             echo 'value="99">RIT</option>'; ?>
                             <?php echo "</select>"; ?>
-                            <br/>
+                            <br />
                             <?php
                             $j++;
                         endwhile; ?>
@@ -247,15 +247,15 @@
                 <fieldset>
                     <legend>Inserimento News</legend>
                     <label for='titolo'>Titolo:</label>
-                    <textarea rows='3' cols='30' name='titolo' id='titolo'></textarea><br/>
+                    <textarea rows='3' cols='30' name='titolo' id='titolo'></textarea><br />
                     <label for='descrizione'>Descrizione:</label>
-                    <textarea rows='10' cols='30' name='descrizione' id='descrizione'></textarea><br/>
+                    <textarea rows='10' cols='30' name='descrizione' id='descrizione'></textarea><br />
                     <label for='fonte'>Fonte:</label>
-                    <input name='fonte' id='fonte' maxlength='50'/><br/>
+                    <input name='fonte' id='fonte' maxlength='50'/><br />
                     <label for='indirizzo'>Link:</label>
-                    <input name='indirizzo' id='indirizzo' maxlength='200'/><br/>
+                    <input name='indirizzo' id='indirizzo' maxlength='200'/><br />
                     <label for='data'>Data:</label>
-                    <input name='data' id='data' maxlength='50'/><br/>
+                    <input name='data' id='data' maxlength='50'/><br />
                     <input class="button" type="submit" value="Salva" id="inserisciNews"/>
 
                     <input class="button" type="reset" value="Cancella"/>

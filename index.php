@@ -7,9 +7,9 @@
     <meta name="description" content="Homepage del Sito"/>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <link rel="stylesheet" href="css/slide.css" />
-    <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/slide.css"/>
+    <link rel="stylesheet" type="text/css" href="css/print.css" media="print"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
     <title>Homepage - WRC News</title>
 </head>
 <body class="home">
@@ -19,19 +19,19 @@
     <div class="slider content">
         <ul>
             <li>
-                <input type="radio" id="slide1" name="slide" checked>
+                <input type="radio" id="slide1" name="slide" checked="checked" />
                 <label for="slide1"></label>
-                <div class="cont-img" alt="panel 1"></div>
+                <div class="cont-img"></div>
             </li>
             <li>
-                <input type="radio" id="slide2" name="slide">
+                <input type="radio" id="slide2" name="slide"/>
                 <label for="slide2"></label>
-                <div class="cont-img-1" alt="panel 1"></div>
+                <div class="cont-img-1"></div>
             </li>
             <li>
-                <input type="radio" id="slide3" name="slide">
+                <input type="radio" id="slide3" name="slide"/>
                 <label for="slide3"></label>
-                <div class="cont-img-2" alt="panel 1"></div>
+                <div class="cont-img-2"></div>
             </li>
         </ul>
     </div>
@@ -54,7 +54,7 @@
                 $pilota = substr($row[1], 0, 1);
                 $pilota = "$pilota. $row[0]"; ?>
                 <div class="piloti">
-                    <span><?php echo $pilota ?></span><br>
+                    <span><?php echo $pilota ?></span><br/>
                     <span class="punti"><?php echo $row[2] ?> punti</span>
                 </div>
             <?php endwhile;
@@ -68,7 +68,7 @@
     </div>
 
 
-    <?php //qui ci va news
+    <?php
     $sql = "SELECT titolo, descrizione, data FROM Notizia ORDER BY id DESC LIMIT 1;";
     $results = mysqli_query($connessione, $sql);
     $values = array();
@@ -76,12 +76,12 @@
         $values[] = $row;
     ?>
     <?php foreach ($values as $value) : ?>
-        <article class="news-home">
-            <time><?php echo stripslashes($value['data']); ?></time>
-                <h3><?php echo stripslashes($value['titolo']); ?></h3>
+        <div class="news-home">
+            <p><?php echo stripslashes($value['data']); ?></p>
+            <h3><?php echo stripslashes($value['titolo']); ?></h3>
             <p><?php echo stripslashes($value['descrizione']); ?></p>
-            <button><a href="news.php">Visita la nostra sezione news!</a></button>
-        </article>
+            <a href="news.php">Visita la nostra sezione news!</a>
+        </div>
     <?php endforeach; ?>
 
 </div>

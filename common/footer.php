@@ -15,7 +15,7 @@
 <?php } ?>
 
 
-<footer id="footer" class="content-info">
+<div id="footer" class="content-info">
     <div class="ancor">
         <div class="container">
             <p>&copy; <?php auto_copyright("2018"); ?> Sito WRC News.</p>
@@ -24,8 +24,8 @@
             <?php elseif ($_SERVER['REQUEST_URI'] == "/admin.php?azione=default" || $_SERVER['REQUEST_URI'] == "/admin.php?azione=modificaGare" || $_SERVER['REQUEST_URI'] == "/admin.php?azione=inserimentoNews" || $_SERVER['REQUEST_URI'] == "/admin.php?azione=inserimentoRisultati") : ?>
                 <a href="logout.php">Logout</a>
             <?php else : ?>
-                <a href="admin.php?azione=default">Amministratore</a
+                <a href="admin.php?azione=default">Amministratore</a>
             <?php endif; ?>
         </div>
     </div>
-</footer>
+</div>
