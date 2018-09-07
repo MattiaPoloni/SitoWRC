@@ -81,14 +81,13 @@ $(document).ready(function () {
     $('[name^="p"]').change(function () {
         checkSelects();
     });
-});
-
-function checkSelects() {
+	
+	
+	function checkSelects() {
     var $elements = $('[name^="p"]');
 
-
     $elements.removeClass('invalid');
-    document.getElementById("inserisciRisultati").disabled = false;
+
     $elements.each(function () {
         var selectedValue = this.value;
 
@@ -96,10 +95,13 @@ function checkSelects() {
             .not(this)
             .filter(function () {
                 console.log([this.value, selectedValue]);
-                return this.value == selectedValue && selectedValue != 99;
+                return this.value == selectedValue && selectedValue != 99 && this.value!=99;
             })
             .addClass('invalid');
-        document.getElementById("inserisciRisultati").disabled = true;
     });
 }
+
+});
+
+
 

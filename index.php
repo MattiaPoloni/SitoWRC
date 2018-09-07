@@ -7,9 +7,10 @@
     <meta name="description" content="Homepage del Sito"/>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <link rel="stylesheet" type="text/css"href="css/slide.css"/>
+    <link rel="stylesheet" type="text/css" href="css/slide.css"/>
     <link rel="stylesheet" type="text/css" href="css/print.css" media="print"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+  
     <title>Homepage - WRC News</title>
 </head>
 <body class="home">

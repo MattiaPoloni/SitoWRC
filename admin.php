@@ -31,7 +31,7 @@
     if ($_GET["azione"] == "inserimentoRisultati") :
         ?>
         <div class="risultati">
-            <form method="post" action="admin.php?azione=inserimentoRisultati">
+            <form method="post" action="admin.php?azione=inserimentoRisultati" id="insRisultatiForm">
                 <fieldset>
                     <legend>Inserimento dei risultati</legend>
                     <?php
@@ -102,9 +102,9 @@
                     ?>
 
                     <button type="submit" name="save" value="save" id="inserisciRisultati">Carica</button>
-                    <input class="button" type="reset" value="Cancella"/>
                 </fieldset>
             </form>
+			
             <?php
             }
             ?>
@@ -199,7 +199,6 @@
                         <button type="submit" name="applica" value="Applica modifiche" id="applicaModificheGara">Applica
                             Modifiche
                         </button>
-                        <input class="button" type="reset" value="Cancella"/>
                     </fieldset>
                 </form>
                 <?php
