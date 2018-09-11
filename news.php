@@ -51,7 +51,7 @@
                 </fieldset>
         </form>
     </div>
-    <div id="back_to_top"><img src="media/back_to_top.png"></div>
+    <div id="tornaSu"><img src="media/tornaSu.png"></div>
     <?php include('common/footer.php'); ?>
 </body>
 </html>
