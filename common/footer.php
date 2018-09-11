@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="it">
-
 <?php function auto_copyright($year = 'auto')
 { ?>
     <?php if (intval($year) == 'auto') {
@@ -18,7 +15,7 @@
 <?php } ?>
 
 
-<footer id="footer" class="content-info">
+<div id="footer" class="content-info">
     <div class="ancor">
         <div class="container">
             <p>&copy; <?php auto_copyright("2018"); ?> Sito WRC News.</p>
@@ -27,10 +24,8 @@
             <?php elseif (strpos($_SERVER['REQUEST_URI'], "admin.php?azione=default") !== false || strpos($_SERVER['REQUEST_URI'],"admin.php?azione=modificaGare") !== false || strpos($_SERVER['REQUEST_URI'],"admin.php?azione=inserimentoNews") !== false || strpos($_SERVER['REQUEST_URI'], "admin.php?azione=inserimentoRisultati")  !== false) : ?>
                 <a href="logout.php">Logout</a>
             <?php else : ?>
-                <a href="admin.php?azione=default">Amministratore</a
+                <a href="admin.php?azione=default">Amministratore</a>
             <?php endif; ?>
         </div>
     </div>
-</footer>
-
-</html>
+</div>

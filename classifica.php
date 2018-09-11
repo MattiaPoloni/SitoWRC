@@ -88,7 +88,6 @@
             $('#classificaPilotiImg').attr('colspan',2);
         }
         else {
-            console.log('buzo colspan');
             $('#classificaPilotiImg').attr('colspan',1);
         }
         tid = setTimeout(mycode, 100);

@@ -7,7 +7,7 @@
     <meta name="description" content="Pagina Amministrazione"/>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="css/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="css/print.css" media="print"/>
     <title>Amministrazione</title>
 
     <script
@@ -20,11 +20,6 @@
     <?php include "connessione.php"; ?>
     <?php require "funzioni.php"; ?>
     <?php require "session.php"; ?>
-
-    <?php
-    //if ($_SESSION['login_user'] != '') :
-
-    ?>
 
     <h1>Welcome <?php echo $_SESSION['login_user']; ?></h1>
     <div class="azioni">
@@ -43,11 +38,9 @@
 
 
                     $selectGare = "SELECT Gara.id, Pista.nome, Gara.giorno FROM `Pista` inner join Gara on Pista.id = Gara.id_pista ;";
-                    //$data = new Open();
-                    //$mysqli->connect();
+
                     $gara = $connessione->query($selectGare);
                     if ($gara->num_rows > 0) :
-                        // output data of each row
 
                         echo '<select id="risultati" name="gara">'; ?>
                         <?php
@@ -66,7 +59,7 @@
                     ?>
                     <?php
                     echo '<input class="button" id="visualizzaRisultati" type="submit" name="garaSelezionata" value="Posizioni"/>';
-                    echo "</br>";
+                    echo "<br />";
                     ?>
                     <?php
 
@@ -76,7 +69,6 @@
 
                     $name = $connessione->query($selectPiloti);
                     if ($name->num_rows > 0) :
-                        // output data of each row
                         ?>
                         <?php
                         $j = 1;
@@ -100,16 +92,13 @@
 
                             echo 'value="99">RIT</option>'; ?>
                             <?php echo "</select>"; ?>
-                            <br/>
+                            <br />
                             <?php
                             $j++;
                         endwhile; ?>
                     <?php else :
                         echo "0 results";
                     endif;
-                    /*for($i = 0; $i < 16; $i++) {
-                        echo "<select name='p'".$i.">";
-                    }*/
                     ?>
 
                     <button type="submit" name="save" value="save" id="inserisciRisultati">Carica</button>
@@ -167,13 +156,9 @@
 
                     $select = "SELECT Gara.id, Pista.nome, Gara.giorno FROM `Pista` inner join Gara on Pista.id = Gara.id_pista
             where Gara.id not in (select id_gara from Risultati_Gare);";
-                    //$data = new Open();
-                    //$mysqli->connect();
-                    $pista = mysqli_query($connessione, $select);
-                    //$pista = $connessione->query($select);
-                    if (mysqli_num_rows($pista) > 0) :
-                        // output data of each row
 
+                    $pista = mysqli_query($connessione, $select);
+                    if (mysqli_num_rows($pista) > 0) :
                         echo '<select name="garaScelta">'; ?>
                         <?php
                         while ($rower = $pista->fetch_assoc()) : ?>
