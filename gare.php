@@ -10,6 +10,26 @@
     <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
     <title>Gare</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    var tid;
+    tid = setTimeout(mycode, 0);
+    function mycode() {
+        if($( window ).width() > 575) {
+            $('#imgAuto').attr('colspan',2);
+        }
+        else {
+            console.log('buzo colspan');
+            $('#imgAuto').attr('colspan',1);
+        }
+        tid = setTimeout(mycode, 100);
+    }
+
+    window.onbeforeprint = function() {
+        clearTimeout(tid);
+        $('#imgAuto').attr('colspan',1);
+    };
+
+</script>
 </head>
 <body class="gara">
 <div class="content">
@@ -34,8 +54,9 @@
         <form action="gare.php" method="post">
             <fieldset>
                 <legend>Selezione Gare</legend>
-                <select name="gara">
+                
                     <?php
+                    echo "<select name='gara'>";
                     $ris = $connessione->query("SELECT Gara.id, Pista.nome
                         FROM Gara INNER JOIN Pista ON Gara.id_pista = Pista.id
                         ORDER BY Gara.id;");
@@ -46,8 +67,9 @@
                             echo ">$row[0] - $row[1]</option>";
                         }
                     }
+                    
+                    echo "</select>";
                     ?>
-                </select>
                 <input class="button" type="submit" value="Cerca"/>
             </fieldset>
         </form>
@@ -87,24 +109,6 @@
 </div>
 <?php include('common/footer.php'); ?>
 </body>
-<script>
-    var tid;
-    tid = setTimeout(mycode, 0);
-    function mycode() {
-        if($( window ).width() > 575) {
-            $('#imgAuto').attr('colspan',2);
-        }
-        else {
-            $('#imgAuto').attr('colspan',1);
-        }
-        tid = setTimeout(mycode, 100);
-    }
 
-    window.onbeforeprint = function() {
-        clearTimeout(tid);
-        $('#imgAuto').attr('colspan',1);
-    };
-
-</script>
 
 </html>
