@@ -267,6 +267,8 @@
 
                 $data = $_POST["data"];
                 $query321 = "INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo,data) VALUES ('$titolo','$descrizione','$fonte','$indirizzo','$data');";
+                //$regFonte =
+                if($titolo.length > 0 && $titolo.length < 150 && $descrizione.length > 0 && $descrizione.length < 500)
                 $connessione->query("INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo,data) VALUES ('$titolo','$descrizione','$fonte','$indirizzo','$data');");
             }
             ?>
@@ -278,7 +280,7 @@
     ?>
 
 </div>
-
+<div id="tornaSu"><img src="media/tornaSu.png" alt="Torna Su" /></div>
 <?php include('common/footer.php') ?>
 </body>
 
