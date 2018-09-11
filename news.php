@@ -7,7 +7,7 @@
 	<meta name="description" content="News Dal Mondo WRC." />
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-	<link rel="stylesheet" type="text/css" href="css/print.css" media="print /">
+	<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
     <title>News</title>
 </head>
 <body class="newsBody">
@@ -43,7 +43,7 @@
                 <fieldset>
                     <legend>Iscriviti alla nostra Newsletter</legend>
                     <label for="email">E-mail:</label>
-                    <input name="email" id="email" maxlenght="30"/>
+                    <input name="email" id="email"/>
                     <input type="submit" class="button" value="Salva"/>
                     <input class="button" type="reset" value="Cancella"/>
                 </fieldset>
