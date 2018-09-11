@@ -23,9 +23,9 @@
 
     <h1>Welcome <?php echo $_SESSION['login_user']; ?></h1>
     <div class="azioni">
-        <a id="ins" href="admin.php?azione=inserimentoRisultati">Inserimento Risultati</a>
-        <a id="mod" href="admin.php?azione=modificaGare">Modifica infomazioni gare</a>
-        <a id="insN" href="admin.php?azione=inserimentoNews">Inserimento News</a>
+        <a id="ins" href="admin.php?azione=inserimentoRisultati" tabindex="1">Inserimento Risultati</a>
+        <a id="mod" href="admin.php?azione=modificaGare" tabindex="1">Modifica infomazioni gare</a>
+        <a id="insN" href="admin.php?azione=inserimentoNews" tabindex="1">Inserimento News</a>
     </div>
     <?php
     if ($_GET["azione"] == "inserimentoRisultati") :
@@ -42,7 +42,7 @@
                     $gara = $connessione->query($selectGare);
                     if ($gara->num_rows > 0) :
 
-                        echo '<select id="risultati" name="gara">'; ?>
+                        echo '<select id="risultati" name="gara" tabindex="1">'; ?>
                         <?php
                         while ($row = $gara->fetch_assoc()) : ?>
                             <?php
@@ -58,57 +58,67 @@
                     endif;
                     ?>
                     <?php
-                    echo '<input class="button" id="visualizzaRisultati" type="submit" name="garaSelezionata" value="Posizioni"/>';
+                    echo '<input class="button" id="visualizzaRisultati" type="submit" name="garaSelezionata" value="Posizioni" tabindex="1"/>';
                     echo "<br />";
                     ?>
+
                     <?php
 
                     if (isset($_POST['garaSelezionata']) && !empty($_POST['garaSelezionata'])) {
 
-                    $selectPiloti = "SELECT matricola, nome, cognome FROM Pilota;";
+                        $selectPiloti = "SELECT matricola, nome, cognome FROM Pilota;";
 
-                    $name = $connessione->query($selectPiloti);
-                    if ($name->num_rows > 0) :
+                        $name = $connessione->query($selectPiloti);
+
+                        $garePresenti = 'SELECT id_gara from Risultati_Gare where id_gara = "' . $_POST["gara"] .'";';
+                        $garaPresente = mysqli_fetch_array($connessione->query($garePresenti), MYSQLI_ASSOC);
+                        if(empty($garaPresente)) {
+
+                            echo '<h3> Gara non ancora disputata </h3>';
+                            //js inline per disabilitare bottone carica
+                        }
+
+                        if ($name->num_rows > 0) :
+                            ?>
+                            <?php
+                            $j = 1;
+                            while ($row = $name->fetch_assoc()) : ?>
+                                <?php echo '<label for="pilota">' . $row["nome"] . " " . $row["cognome"] ?>
+                                <?php echo "</label>";
+                                $selectPosizioni = 'SELECT posizione_arrivo from Risultati_Gare where id_gara = "' . $_POST["gara"] . '" AND id_pilota = "' . $row["matricola"] . '";';
+                                $posizionePilota = mysqli_fetch_array($connessione->query($selectPosizioni), MYSQLI_ASSOC); ?>
+                                <?php echo '<select name="p' . $j . '" tabindex="1">'; ?>
+                                <?php
+                                for ($i = 1; $i < 17; $i++) {
+                                    if ($i == $posizionePilota["posizione_arrivo"])
+                                        echo '<option selected = "selected" value=' . $i . '>' . $i . '°</option>';
+                                    else
+                                        echo "<option value=" . $i . ">" . $i . "°</option>";
+                                }
+                                echo "<option "; ?>
+                                <?php
+                                if ($posizionePilota["posizione_arrivo"] == 99)
+                                    echo 'selected = "selected"';
+
+                                echo 'value="99">RIT</option>'; ?>
+                                <?php echo "</select>"; ?>
+                                <br />
+                                <?php
+                                $j++;
+                            endwhile; ?>
+                        <?php else :
+                            echo "0 results";
+                        endif;
                         ?>
+
+                        <button type="submit" name="save" value="save" id="inserisciRisultati" tabindex="1" disabled="disabled">Carica</button>
+
+
                         <?php
-                        $j = 1;
-                        while ($row = $name->fetch_assoc()) : ?>
-                            <?php echo '<label for="pilota">' . $row["nome"] . " " . $row["cognome"] ?>
-                            <?php echo "</label>";
-                            $selectPosizioni = 'SELECT posizione_arrivo from Risultati_Gare where id_gara = "' . $_POST["gara"] . '" AND id_pilota = "' . $row["matricola"] . '";';
-                            $posizionePilota = mysqli_fetch_array($connessione->query($selectPosizioni), MYSQLI_ASSOC); ?>
-                            <?php echo '<select name="p' . $j . '">'; ?>
-                            <?php
-                            for ($i = 1; $i < 17; $i++) {
-                                if ($i == $posizionePilota["posizione_arrivo"])
-                                    echo '<option selected = "selected" value=' . $i . '>' . $i . '°</option>';
-                                else
-                                    echo "<option value=" . $i . ">" . $i . "°</option>";
-                            }
-                            echo "<option "; ?>
-                            <?php
-                            if ($posizionePilota["posizione_arrivo"] == 99)
-                                echo 'selected = "selected"';
-
-                            echo 'value="99">RIT</option>'; ?>
-                            <?php echo "</select>"; ?>
-                            <br />
-                            <?php
-                            $j++;
-                        endwhile; ?>
-                    <?php else :
-                        echo "0 results";
-                    endif;
+                    }
                     ?>
-
-                    <button type="submit" name="save" value="save" id="inserisciRisultati">Carica</button>
                 </fieldset>
             </form>
-			
-            <?php
-            }
-            ?>
-
             <?php
 
             if (isset($_POST['save']) && !empty($_POST['save'])) {
@@ -159,7 +169,7 @@
 
                     $pista = mysqli_query($connessione, $select);
                     if (mysqli_num_rows($pista) > 0) :
-                        echo '<select name="garaScelta">'; ?>
+                        echo '<select name="garaScelta" tabindex="1">'; ?>
                         <?php
                         while ($rower = $pista->fetch_assoc()) : ?>
 
@@ -174,7 +184,7 @@
                     <?php else :
                         echo "0 results";
                     endif; ?>
-                    <input class="button" type="submit" name="modifica" value="Modifica"/>
+                    <input class="button" type="submit" name="modifica" value="Modifica" tabindex="1"/>
                 </fieldset>
             </form>
 
@@ -188,15 +198,15 @@
                     <fieldset>
                         <?php
                         while ($row3 = $data->fetch_assoc()) {
-                            echo '<input class="modG" type="text" size = "40" name="nomePista" value="' . $row3["nome"] . '">';
-                            echo '<input class="modG"type="text" name="cittaPista" value="' . $row3["citta"] . '">';
-                            echo '<input class="modG"type="text" name="statoPista" value="' . $row3["stato"] . '">';
-                            echo '<input class="modG"type="text" name="giornoGara" value="' . $row3["giorno"] . '">';
-                            echo '<input class="modG"type="text" name="tipoPista" value="' . $row3["tipo"] . '">';
-                            echo '<input type="hidden" name="idPista" value="' . $row3["pistaId"] . '">';
-                            echo '<input type="hidden" name="idGara" value="' . $row3["garaId"] . '">';
+                            echo '<input class="modG" type="text" size = "40" name="nomePista" tabindex="1" value="' . $row3["nome"] . '">';
+                            echo '<input class="modG"type="text" name="cittaPista" tabindex="1" value="' . $row3["citta"] . '">';
+                            echo '<input class="modG"type="text" name="statoPista" tabindex="1" value="' . $row3["stato"] . '">';
+                            echo '<input class="modG"type="text" name="giornoGara" tabindex="1" value="' . $row3["giorno"] . '">';
+                            echo '<input class="modG"type="text" name="tipoPista" tabindex="1" value="' . $row3["tipo"] . '">';
+                            echo '<input type="hidden" name="idPista" tabindex="1" value="' . $row3["pistaId"] . '">';
+                            echo '<input type="hidden" name="idGara" tabindex="1" value="' . $row3["garaId"] . '">';
                         } ?>
-                        <button type="submit" name="applica" value="Applica modifiche" id="applicaModificheGara">Applica
+                        <button type="submit" name="applica" value="Applica modifiche" id="applicaModificheGara" tabindex="1">Applica
                             Modifiche
                         </button>
                     </fieldset>
@@ -231,18 +241,18 @@
                 <fieldset>
                     <legend>Inserimento News</legend>
                     <label for='titolo'>Titolo:</label>
-                    <textarea rows='3' cols='30' name='titolo' id='titolo'></textarea><br/>
+                    <textarea rows='3' cols='30' name='titolo' id='titolo' tabindex="1"></textarea><br/>
                     <label for='descrizione'>Descrizione:</label>
-                    <textarea rows='10' cols='30' name='descrizione' id='descrizione'></textarea><br/>
+                    <textarea rows='10' cols='30' name='descrizione' id='descrizione' tabindex="1"></textarea><br/>
                     <label for='fonte'>Fonte:</label>
-                    <input name='fonte' id='fonte' maxlength='50'/><br/>
+                    <input name='fonte' id='fonte' maxlength='50' tabindex="1"/><br/>
                     <label for='indirizzo'>Link:</label>
-                    <input name='indirizzo' id='indirizzo' maxlength='200'/><br/>
+                    <input name='indirizzo' id='indirizzo' maxlength='200' tabindex="1"/><br/>
                     <label for='data'>Data:</label>
-                    <input name='data' id='data' maxlength='50'/><br/>
-                    <input class="button" type="submit" value="Salva" id="inserisciNews"/>
+                    <input name='data' id='data' maxlength='50' tabindex="1"/><br/>
+                    <input class="button" type="submit" value="Salva" id="inserisciNews" tabindex="1"/>
 
-                    <input class="button" type="reset" value="Cancella"/>
+                    <input class="button" type="reset" value="Cancella" tabindex="1"/>
                 </fieldset>
             </form>
 

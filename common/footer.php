@@ -22,7 +22,7 @@
             <?php if (!isset($_SESSION['login_user'])) : ?>
                 <a href="login.php">Login</a>
             <?php elseif (strpos($_SERVER['REQUEST_URI'], "admin.php?azione=default") !== false || strpos($_SERVER['REQUEST_URI'],"admin.php?azione=modificaGare") !== false || strpos($_SERVER['REQUEST_URI'],"admin.php?azione=inserimentoNews") !== false || strpos($_SERVER['REQUEST_URI'], "admin.php?azione=inserimentoRisultati")  !== false) : ?>
-                <a href="logout.php">Logout</a>
+                <a href="logout.php" accesskey="l">Logout</a>
             <?php else : ?>
                 <a href="admin.php?azione=default">Amministratore</a>
             <?php endif; ?>
