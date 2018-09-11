@@ -8,15 +8,34 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js">
+            $(document).ready(function () {
+        var url = window.location.href.split("?");
+        if (url[1] == "cosa=default" || url[1] == "cosa=piloti") {
+            $('#piloti').addClass("active");
+        } else if (url[1] == "cosa=costruttori") {
+            $('#costruttori').addClass("active");
+        }
+    });
+
+    var tid = setTimeout(mycode, 0);
+    function mycode() {
+        if($( window ).width() > 575) {
+            $('#classificaPilotiImg').attr('colspan',2);
+        }
+        else {
+            console.log('buzo colspan');
+            $('#classificaPilotiImg').attr('colspan',1);
+        }
+        tid = setTimeout(mycode, 100);
+    }
+
+    </script>
     <title>Classifica</title>
 
 </head>
 <body class="classifica">
-<main class="content">
+<div id="main" class="content">
     <div class="container classifica">
         <?php session_start() ?>
         <?php include('common/header.html');
@@ -69,30 +88,7 @@
         $connessione->close();
         ?>
     </div>
-</main>
+</div>
 <?php include('common/footer.php'); ?>
 </body>
-<script>
-    $(document).ready(function () {
-        var url = window.location.href.split("?");
-        if (url[1] == "cosa=default" || url[1] == "cosa=piloti") {
-            $('#piloti').addClass("active");
-        } else if (url[1] == "cosa=costruttori") {
-            $('#costruttori').addClass("active");
-        }
-    });
-
-    var tid = setTimeout(mycode, 0);
-    function mycode() {
-        if($( window ).width() > 575) {
-            $('#classificaPilotiImg').attr('colspan',2);
-        }
-        else {
-            console.log('buzo colspan');
-            $('#classificaPilotiImg').attr('colspan',1);
-        }
-        tid = setTimeout(mycode, 100);
-    }
-
-</script>
 </html>
