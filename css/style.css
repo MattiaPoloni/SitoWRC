@@ -1099,14 +1099,14 @@ form input.button {
 .gallery img:last-of-type {
     margin-bottom: 3rem;
 }
-#back_to_top {
+#tornaSu {
     position: fixed;
     width: 6%;
     bottom: 15px;
     right: 25px;
     cursor: pointer;
 }
-#back_to_top img {
+#tornaSu img {
     width: 100%;
 }
 
