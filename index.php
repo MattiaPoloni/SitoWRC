@@ -10,7 +10,11 @@
     <link rel="stylesheet" type="text/css" href="css/slide.css"/>
     <link rel="stylesheet" type="text/css" href="css/print.css" media="print"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
-  
+    <script src="js/admin.js" type="text/javascript"></script>
+    <script src="js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+</script>
     <title>Homepage - WRC News</title>
 </head>
 <body class="home">
@@ -86,7 +90,7 @@
     <?php endforeach; ?>
 
 </div>
-
+<div id="tornaSu"><img src="media/tornaSu.png" alt="Torna Su" /></div>
 <?php include('common/footer.php') ?>
 
 </body>
