@@ -1099,6 +1099,16 @@ form input.button {
 .gallery img:last-of-type {
     margin-bottom: 3rem;
 }
+#back_to_top {
+    position: fixed;
+    width: 6%;
+    bottom: 15px;
+    right: 25px;
+    cursor: pointer;
+}
+#back_to_top img {
+    width: 100%;
+}
 
 @media (min-width: 768px) and (max-width: 991px)   {
     #logo-main {
