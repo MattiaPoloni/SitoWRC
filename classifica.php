@@ -8,6 +8,7 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+    <script src="js/admin.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js">
             $(document).ready(function () {
         var url = window.location.href.split("?");
@@ -24,7 +25,6 @@
             $('#classificaPilotiImg').attr('colspan',2);
         }
         else {
-            console.log('buzo colspan');
             $('#classificaPilotiImg').attr('colspan',1);
         }
         tid = setTimeout(mycode, 100);
@@ -89,6 +89,7 @@
         ?>
     </div>
 </div>
+<div id="tornaSu"><img src="media/tornaSu.png" alt="Torna Su" /></div>
 <?php include('common/footer.php'); ?>
 </body>
 </html>
