@@ -7,28 +7,32 @@
     <meta name="description" content="Risultati Gare Disputate"/>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+    <link rel="stylesheet" type="text/css" href="css/print.css" media="print"/>
     <title>Gare</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
     <script src="js/admin.js" type="text/javascript"></script>
     <script type="text/javascript">
-    var tid;
-    tid = setTimeout(mycode, 0);
-    function mycode() {
-        if($( window ).width() > 575)
-            $('#imgAuto').attr('colspan',2);
-        else
-            $('#imgAuto').attr('colspan',1);
+        var tid;
+        tid = setTimeout(mycode, 0);
 
-        tid = setTimeout(mycode, 100);
-    }
+        function mycode() {
+            if ($(window).width() > 575) {
+                console.log('test');
+                $('#imgAuto').attr('colspan', 2);
+            }
+            else {
+                console.log('test2');
+                $('#imgAuto').attr('colspan', 1);
+            }
+            tid = setTimeout(mycode, 100);
+        }
 
-    window.onbeforeprint = function() {
-        clearTimeout(tid);
-        $('#imgAuto').attr('colspan',1);
-    };
+        window.onbeforeprint = function () {
+            clearTimeout(tid);
+            $('#imgAuto').attr('colspan', 1);
+        };
 
-</script>
+    </script>
 </head>
 <body class="gara">
 <div class="content">
@@ -54,21 +58,21 @@
             <fieldset>
                 <legend>Selezione Gare</legend>
 
-                    <?php
-                    echo "<select name='gara' tabindex=\"9\">";
-                    $ris = $connessione->query("SELECT Gara.id, Pista.nome
+                <?php
+                echo "<select name='gara' tabindex=\"9\">";
+                $ris = $connessione->query("SELECT Gara.id, Pista.nome
                         FROM Gara INNER JOIN Pista ON Gara.id_pista = Pista.id
                         ORDER BY Gara.id;");
-                    if ($ris) {
-                        while ($row = $ris->fetch_array(MYSQLI_NUM)) {
-                            echo "<option value='$row[0]-$row[1]'";
-                            if ($row[0] == $num_gara) echo " selected='selected'";
-                            echo ">$row[0] - $row[1]</option>";
-                        }
+                if ($ris) {
+                    while ($row = $ris->fetch_array(MYSQLI_NUM)) {
+                        echo "<option value='$row[0]-$row[1]'";
+                        if ($row[0] == $num_gara) echo " selected='selected'";
+                        echo ">$row[0] - $row[1]</option>";
                     }
-                    
-                    echo "</select>";
-                    ?>
+                }
+
+                echo "</select>";
+                ?>
                 <input class="button" type="submit" value="Cerca" tabindex="9"/>
             </fieldset>
         </form>
@@ -106,7 +110,7 @@
         ?>
     </div>
 </div>
-<div id="tornaSu"><img src="media/tornaSu.png" alt="Torna Su" /></div>
+<div id="tornaSu"><img src="media/tornaSu.png" alt="Torna Su"/></div>
 <?php include('common/footer.php'); ?>
 </body>
 

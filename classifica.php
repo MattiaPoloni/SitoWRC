@@ -8,7 +8,9 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript">
+
             $(document).ready(function () {
         var url = window.location.href.split("?");
         if (url[1] == "cosa=default" || url[1] == "cosa=piloti") {
