@@ -100,7 +100,7 @@ $(document).ready(function () {
             .addClass('invalid');
     });
 }
-    var btt = $("#back_to_top");
+    var btt = $("#tornaSu");
 
 // nascono il bottone al caricamento della pagina
     btt.hide();
