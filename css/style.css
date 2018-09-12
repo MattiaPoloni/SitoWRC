@@ -20,7 +20,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, section, div {
 
 body {
     position: relative;
-    padding-bottom: 6.5rem;
+    padding-bottom: 8.5rem;
     min-height: 100%;
     width: 100%;
     margin: 0;
@@ -586,6 +586,7 @@ body.newsBody #menu-menu-principale-1 .menu-item.news a {
 }
 
 .ancor {
+    float: left;
     position: relative;
     bottom: 0;
     width: 100%;
@@ -593,7 +594,14 @@ body.newsBody #menu-menu-principale-1 .menu-item.news a {
     color: #fff;
     padding: 15px 0;
     margin-top: 20px;
-
+}
+.ancor .container {
+    float: left;
+    width: 50%;
+}
+.ancor .valid {
+    float: right;
+    padding-right: 1rem;
 }
 
 /************************************************** MENU MOBILE *******************************************************/
