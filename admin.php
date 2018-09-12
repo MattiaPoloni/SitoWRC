@@ -75,12 +75,12 @@
                         if(empty($garaPresente)) {
 
                             echo '<h3> Gara non ancora disputata </h3>';
-                            //js inline per disabilitare bottone carica
                         }
 
                         if ($name->num_rows > 0) :
                             ?>
                             <?php
+                            //$vet = [];
                             $j = 1;
                             while ($row = $name->fetch_assoc()) : ?>
                                 <?php echo '<label for="pilota">' . $row["nome"] . " " . $row["cognome"] ?>
@@ -90,8 +90,10 @@
                                 <?php echo '<select name="p' . $j . '" tabindex="1">'; ?>
                                 <?php
                                 for ($i = 1; $i < 17; $i++) {
-                                    if ($i == $posizionePilota["posizione_arrivo"])
+                                    if ($i == $posizionePilota["posizione_arrivo"]) {
                                         echo '<option selected = "selected" value=' . $i . '>' . $i . '°</option>';
+                                        //array_push($vet,$i);
+                                    }
                                     else
                                         echo "<option value=" . $i . ">" . $i . "°</option>";
                                 }
@@ -105,6 +107,7 @@
                                 <br />
                                 <?php
                                 $j++;
+
                             endwhile; ?>
                         <?php else :
                             echo "0 results";
@@ -120,7 +123,7 @@
                 </fieldset>
             </form>
             <?php
-
+            $vet = array();
             if (isset($_POST['save']) && !empty($_POST['save'])) {
                 $check = 'SELECT id_gara from Risultati_Gare where id_gara = "' . $_POST["gara"] . '";';
                 $ris = $connessione->query($check);
@@ -130,25 +133,40 @@
                         $sql2 .= 'UPDATE Risultati_Gare SET posizione_arrivo = "' . $_POST["p" . $i] . '",
                      punti = "' . punti($_POST["p" . $i]) . '" WHERE id_gara = "' . $_POST["gara"] . '" 
                      AND id_pilota = "' . (1000 + $i) . '";';
+                        if($_POST["p" . $i]!="99")
+                            array_push($vet,$_POST["p" . $i]);
                     }
-                    $q2 = $connessione->multi_query($sql2);
-                    if (!$q2) {
-                        echo "Errore db";
-                        exit();
+                    if (!duplicatiArray($vet)) {
+                        $q2 = $connessione->multi_query($sql2);
+
+                        if (!$q2) {
+                            echo "Errore db";
+                            exit();
+                        }
                     }
-                } else {
+                    else
+                        echo "<h3> Dati non corretti </h3>";
+
+                }
+                else {
                     $sql = "";
                     for ($j = 1; $j < 11; $j++) {
                         $sql .= "INSERT INTO Risultati_Gare (id_gara, id_pilota, posizione_arrivo, punti)
         VALUES ('" . $_POST["gara"] . "','" . (1000 + $j) . "','" . $_POST["p" . $j] . "','" . punti($_POST["p" . $j]) . "');";
                     }
-                    $q = $connessione->multi_query($sql);
-                    if (!$q) {
-                        echo "Errore db";
-                        exit();
+                    if (!duplicatiArray($vet)) {
+                        $q = $connessione->multi_query($sql);
+                        if (!$q) {
+                            echo "Errore db";
+                            exit();
+                        }
                     }
+                    else
+                        echo "<h3> Dati non corretti </h3>";
                 }
             }
+
+
 
             ?>
         </div>
@@ -269,7 +287,7 @@
                 $query321 = "INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo,data) VALUES ('$titolo','$descrizione','$fonte','$indirizzo','$data');";
                 //$regFonte =
                 if($titolo.length > 0 && $titolo.length < 150 && $descrizione.length > 0 && $descrizione.length < 500)
-                $connessione->query("INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo,data) VALUES ('$titolo','$descrizione','$fonte','$indirizzo','$data');");
+                    $connessione->query("INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo,data) VALUES ('$titolo','$descrizione','$fonte','$indirizzo','$data');");
             }
             ?>
         </div>

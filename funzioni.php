@@ -46,3 +46,7 @@ function punti($posizione) {
     }
     return 0;
 }
+
+function duplicatiArray($array) {
+    return count($array) !== count(array_unique($array));
+}
