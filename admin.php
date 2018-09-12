@@ -235,6 +235,7 @@
 
             <?php
             if (isset($_POST["applica"]) && !empty($_POST["applica"])) {
+
                 $updatePista = "UPDATE Pista
                         SET nome = \"" . $_POST["nomePista"] . "\", citta = \"" . $_POST["cittaPista"] . "\",
                         stato = \"" . $_POST["statoPista"] . "\",tipo = \"" . $_POST["tipoPista"] .
@@ -243,8 +244,13 @@
                 $updateGara = "UPDATE Gara
                         SET giorno = \"" . $_POST["giornoGara"] .
                     "\" WHERE id = " . $_POST["idGara"] . ";";
-                $connessione->query($updatePista);
-                $connessione->query($updateGara);
+                $checker = preg_match('^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$/^', $_POST["giornoGara"]);
+                if($_POST["nomePista"]!="" && $_POST["cittaPista"]!="" && $_POST["statoPista"]!="" && $_POST["tipoPista"] && empty($checker)) {
+                    $connessione->query($updatePista);
+                    $connessione->query($updateGara);
+                }
+                else
+                    echo "<h3> Dati non corretti </h3>";
             }
             ?>
         </div>
@@ -282,12 +288,14 @@
                 $descrizione = $_POST["descrizione"];
                 $fonte = $_POST["fonte"];
                 $indirizzo = $_POST["indirizzo"];
-
                 $data = $_POST["data"];
+                $checkLink = preg_match('^/https?:\/\/(www\.)?[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi^',$indirizzo);
                 $query321 = "INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo,data) VALUES ('$titolo','$descrizione','$fonte','$indirizzo','$data');";
                 //$regFonte =
-                if($titolo.length > 0 && $titolo.length < 150 && $descrizione.length > 0 && $descrizione.length < 500)
+                if(strlen($titolo) < 150 && strlen($titolo) > 0 && strlen($descrizione ) < 500 && strlen($descrizione) > 0 && strlen($fonte) > 0 && empty($checkLink))
                     $connessione->query("INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo,data) VALUES ('$titolo','$descrizione','$fonte','$indirizzo','$data');");
+                else
+                    echo "<h3> Dati non corretti </h3>";
             }
             ?>
         </div>
