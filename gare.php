@@ -15,13 +15,11 @@
     var tid;
     tid = setTimeout(mycode, 0);
     function mycode() {
-        if($( window ).width() > 575) {
+        if($( window ).width() > 575)
             $('#imgAuto').attr('colspan',2);
-        }
-        else {
-            console.log('buzo colspan');
+        else
             $('#imgAuto').attr('colspan',1);
-        }
+
         tid = setTimeout(mycode, 100);
     }
 
@@ -55,9 +53,9 @@
         <form action="gare.php" method="post">
             <fieldset>
                 <legend>Selezione Gare</legend>
-                
+
                     <?php
-                    echo "<select name='gara'>";
+                    echo "<select name='gara' tabindex=\"9\">";
                     $ris = $connessione->query("SELECT Gara.id, Pista.nome
                         FROM Gara INNER JOIN Pista ON Gara.id_pista = Pista.id
                         ORDER BY Gara.id;");
@@ -71,7 +69,7 @@
                     
                     echo "</select>";
                     ?>
-                <input class="button" type="submit" value="Cerca"/>
+                <input class="button" type="submit" value="Cerca" tabindex="9"/>
             </fieldset>
         </form>
         <?php
@@ -84,10 +82,10 @@
                     ORDER BY posizione_arrivo;";
         $ris = $connessione->query($query);
         if (!$ris) {
-            echo "Errore Database";
+            echo "<h3>Errore Database</h3>";
         } else {
             if (mysqli_num_rows($ris) == 0)
-                echo "Gara Non Ancora Disputata";
+                echo "<h3>Gara Non Ancora Disputata</h3>";
             else {
                 echo "<table summary='Tabella contente i risultati relativi alla gara $nome_gara'><thead>";
                 echo "<tr><th scope='col'>Posizione</th><th scope='col'>Pilota</th><th id='imgAuto' colspan='2' scope='colgroup'>Auto</th><th scope='col'>Punti</th></tr>";

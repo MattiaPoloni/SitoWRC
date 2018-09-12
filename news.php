@@ -27,7 +27,7 @@
             echo "Errore Database";
         } else {
             while ($row = $ris->fetch_array(MYSQLI_NUM)) :
-                $link = "<a href='$row[3]'>Continua a leggere</a>";
+                $link = "<a href='$row[3]' tabindex='10'>Continua a leggere</a>";
                 ?>
                 <div class="viewNews">
                     <h2><?php echo $row[0]; ?></h2>
@@ -45,9 +45,9 @@
                 <fieldset>
                     <legend>Iscriviti alla nostra Newsletter</legend>
                     <label for="email">E-mail:</label>
-                    <input name="email" id="email"/>
-                    <input type="submit" class="button" value="Salva"/>
-                    <input class="button" type="reset" value="Cancella"/>
+                    <input name="email" id="email" tabindex="10"/>
+                    <input type="submit" class="button" value="Salva" tabindex="10"/>
+                    <input class="button" type="reset" value="Cancella" tabindex="10"/>
                 </fieldset>
         </form>
     </div>
