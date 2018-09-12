@@ -11,10 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/print.css" media="print"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
     <script src="js/admin.js" type="text/javascript"></script>
-    <script src="js/jquery.js" type="text/javascript"></script>
-<script type="text/javascript">
 
-</script>
     <title>Homepage - WRC News</title>
 </head>
 <body class="home">
@@ -42,7 +39,7 @@
     </div>
 
     <div class="contPiloti">
-        <h2>Top 3 Piloti</h2>
+        <h2  >Top 3 Piloti</h2>
         <?php
         include("connessione.php");
         $q = $connessione->query("SELECT Pilota.cognome, Pilota.nome,
@@ -85,7 +82,7 @@
             <p><?php echo stripslashes($value['data']); ?></p>
             <h3><?php echo stripslashes($value['titolo']); ?></h3>
             <p><?php echo stripslashes($value['descrizione']); ?></p>
-            <a href="news.php">Visita la nostra sezione news!</a>
+            <a href="news.php" tabindex="10">Visita la nostra sezione news!</a>
         </div>
     <?php endforeach; ?>
 

@@ -20,12 +20,24 @@
         <div class="container">
             <p>&copy; <?php auto_copyright("2018"); ?> Sito WRC News.</p>
             <?php if (!isset($_SESSION['login_user'])) : ?>
-                <a href="login.php">Login</a>
+                <a href="login.php" tabindex="11">Login</a>
             <?php elseif (strpos($_SERVER['REQUEST_URI'], "admin.php?azione=default") !== false || strpos($_SERVER['REQUEST_URI'],"admin.php?azione=modificaGare") !== false || strpos($_SERVER['REQUEST_URI'],"admin.php?azione=inserimentoNews") !== false || strpos($_SERVER['REQUEST_URI'], "admin.php?azione=inserimentoRisultati")  !== false) : ?>
-                <a href="logout.php">Logout</a>
+                <a href="logout.php" tabindex="11">Logout</a>
             <?php else : ?>
-                <a href="admin.php?azione=default">Amministratore</a>
+                <a href="admin.php?azione=default" tabindex="11">Amministratore</a>
             <?php endif; ?>
         </div>
+        <p class="valid">
+            <a href="http://jigsaw.w3.org/css-validator/check/referer">
+                <img style="border:0;width:88px;height:31px"
+                     src="http://jigsaw.w3.org/css-validator/images/vcss"
+                     alt="CSS Valido!" />
+            </a>
+        </p>
+        <p class="valid">
+            <a href="http://validator.w3.org/check?uri=referer"><img
+                        src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a>
+        </p>
     </div>
+
 </div>

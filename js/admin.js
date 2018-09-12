@@ -108,7 +108,7 @@ $(document).ready(function () {
 // intercetto lo scroll di pagina
     $(window).scroll(function () {
         // se lo scroll supera i 300 pixel dal margine superiore mostro il bottone (se nascosto)
-        if ($(window).scrollTop() > 150) {
+        if ($(window).scrollTop() > 70) {
             if (btt.is(":hidden")) btt.show();
             // in caso contrario lo nascondo (se visibile)
         } else
