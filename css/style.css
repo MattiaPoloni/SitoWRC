@@ -14,7 +14,7 @@ html {
     -webkit-tap-highlight-color: transparent;
 }
 
-article, aside, figcaption, figure, footer, header, hgroup, main, nav, section, div {
+article, aside, figcaption, figure, footer, header, hgroup, main, section, div {
     display: block;
 }
 
