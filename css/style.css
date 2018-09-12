@@ -1100,6 +1100,7 @@ form input.button {
     margin-bottom: 3rem;
 }
 #tornaSu {
+    display: none;
     position: fixed;
     width: 6%;
     bottom: 15px;

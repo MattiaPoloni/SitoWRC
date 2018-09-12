@@ -8,7 +8,6 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
-    <script src="js/admin.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js">
             $(document).ready(function () {
         var url = window.location.href.split("?");
@@ -31,6 +30,7 @@
     }
 
     </script>
+    <script src="js/admin.js" type="text/javascript"></script>
     <title>Classifica</title>
 
 </head>
@@ -42,8 +42,8 @@
         include('funzioni.php');
         ?>
         <div class="navigation">
-            <a id="piloti" href="classifica.php?cosa=piloti">Classifica Piloti</a>
-            <a id="costruttori" href="classifica.php?cosa=costruttori">Classifica Costruttori</a>
+            <a id="piloti" href="classifica.php?cosa=piloti" tabindex="9">Classifica Piloti</a>
+            <a id="costruttori" href="classifica.php?cosa=costruttori" tabindex="9">Classifica Costruttori</a>
         </div>
         <?php
         include "connessione.php";
@@ -56,10 +56,10 @@
         if(!$q){
             echo "Errore db";
         }else{
-                echo "<h3>Classifica Costruttori</h3>";
-                echo "<table summary='Classifica Costruttori'><thead><tr><th colspan='2' scope='colgroup'>Team</th><th scope='col'>Punti</th></tr></thead><tbody>";
+                echo "<h3 tabindex=\"9\">Classifica Costruttori</h3>";
+                echo "<table summary='Classifica Costruttori'><thead><tr><th colspan='2' scope='colgroup' tabindex=\"9\">Team</th><th scope='col' tabindex=\"9\">Punti</th></tr></thead><tbody>";
                 while($row = $q->fetch_array(MYSQLI_NUM)){
-                    echo "<tr>".trovaLogo($row[0])."<td>$row[0]</td><td>$row[1]</td></tr>";
+                    echo "<tr>".trovaLogo($row[0])."<td tabindex=\"9\">$row[0]</td><td tabindex=\"9\">$row[1]</td></tr>";
                 }
                 echo "</tbody></table>";
             }
@@ -74,13 +74,13 @@
         if(!$q){
             echo "Errore db";
         }else {
-            echo "<h3>Classifica Piloti</h3>";
+            echo "<h3 tabindex=\"9\">Classifica Piloti</h3>";
             echo "<table id='classificaPiloti' summary='Classifica Piloti'>";
-            echo "<thead><tr><th scope='col'>Pilota</th><th id='classificaPilotiImg' colspan='2' scope='colgroup'>Auto</th><th scope='col'>Punti</th></tr></thead><tbody>";
+            echo "<thead><tr><th scope='col' tabindex=\"9\">Pilota</th><th id='classificaPilotiImg' colspan='2' scope='colgroup' tabindex=\"9\">Auto</th><th scope='col' tabindex=\"9\">Punti</th></tr></thead><tbody>";
             while ($row = $q->fetch_array(MYSQLI_NUM)) {
                 $pilota = substr($row[1], 0, 1);
                 $pilota = "$pilota. $row[0]";
-                echo "<tr><td>$pilota</td>" . trovaLogo($row[2]) . "<td>$row[2]</td><td>$row[3]</td></tr>";
+                echo "<tr><td tabindex=\"9\">$pilota</td>" . trovaLogo($row[2]) . "<td tabindex=\"9\">$row[2]</td><td tabindex=\"9\">$row[3]</td></tr>";
             }
         }
         echo "</tbody></table>";
