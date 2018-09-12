@@ -38,7 +38,7 @@
     </div>
 
     <div class="contPiloti">
-        <h2>Top 3 Piloti</h2>
+        <h2 tabindex="10">Top 3 Piloti</h2>
         <?php
         include("connessione.php");
         $q = $connessione->query("SELECT Pilota.cognome, Pilota.nome,
@@ -55,8 +55,8 @@
                 $pilota = substr($row[1], 0, 1);
                 $pilota = "$pilota. $row[0]"; ?>
                 <div class="piloti">
-                    <span><?php echo $pilota ?></span><br/>
-                    <span class="punti"><?php echo $row[2] ?> punti</span>
+                    <span tabindex="10"><?php echo $pilota ?></span><br/>
+                    <span class="punti" tabindex="10"><?php echo $row[2] ?> punti</span>
                 </div>
             <?php endwhile;
         endif; ?>
@@ -78,10 +78,10 @@
     ?>
     <?php foreach ($values as $value) : ?>
         <div class="news-home">
-            <p><?php echo stripslashes($value['data']); ?></p>
-            <h3><?php echo stripslashes($value['titolo']); ?></h3>
-            <p><?php echo stripslashes($value['descrizione']); ?></p>
-            <a href="news.php">Visita la nostra sezione news!</a>
+            <p tabindex="10"><?php echo stripslashes($value['data']); ?></p>
+            <h3 tabindex="10"><?php echo stripslashes($value['titolo']); ?></h3>
+            <p tabindex="10"><?php echo stripslashes($value['descrizione']); ?></p>
+            <a href="news.php" tabindex="10">Visita la nostra sezione news!</a>
         </div>
     <?php endforeach; ?>
 

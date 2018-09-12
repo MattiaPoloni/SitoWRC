@@ -20,11 +20,11 @@
         <div class="container">
             <p>&copy; <?php auto_copyright("2018"); ?> Sito WRC News.</p>
             <?php if (!isset($_SESSION['login_user'])) : ?>
-                <a href="login.php">Login</a>
+                <a href="login.php" tabindex="10">Login</a>
             <?php elseif (strpos($_SERVER['REQUEST_URI'], "admin.php?azione=default") !== false || strpos($_SERVER['REQUEST_URI'],"admin.php?azione=modificaGare") !== false || strpos($_SERVER['REQUEST_URI'],"admin.php?azione=inserimentoNews") !== false || strpos($_SERVER['REQUEST_URI'], "admin.php?azione=inserimentoRisultati")  !== false) : ?>
-                <a href="logout.php">Logout</a>
+                <a href="logout.php" tabindex="10">Logout</a>
             <?php else : ?>
-                <a href="admin.php?azione=default">Amministratore</a>
+                <a href="admin.php?azione=default" tabindex="10">Amministratore</a>
             <?php endif; ?>
         </div>
     </div>
