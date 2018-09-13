@@ -1,18 +1,20 @@
 <?php
-function trovaLogo($nome) {
-    if(strpos($nome, 'Toyota') !== false)
-        $immagine = "<td><img class='logoAuto' src='media/toyota.png' alt='Logo Toyota' /></td>";
-    if(strpos($nome, 'Ford') !== false)
-        $immagine = "<td><img class='logoAuto' src='media/ford.png' alt='Logo Ford' /></td>";
-    if(strpos($nome, 'Citroen') !== false)
-        $immagine = "<td><img class='logoAuto' src='media/citroen.png' alt='Logo Citroen' /></td>";
-    if(strpos($nome, 'Hyundai') !== false)
-        $immagine = "<td><img class='logoAuto' src='media/hyundai.png' alt='Logo Hyundai' /></td>";
+function trovaLogo($nome)
+{
+    if (strpos($nome, 'Toyota') !== false)
+        $immagine = "<td><img class='logoAuto' src='media/toyota.png' alt='Logo Toyota'/></td>";
+    if (strpos($nome, 'Ford') !== false)
+        $immagine = "<td><img class='logoAuto' src='media/ford.png' alt='Logo Ford'/></td>";
+    if (strpos($nome, 'Citroen') !== false)
+        $immagine = "<td><img class='logoAuto' src='media/citroen.png' alt='Logo Citroen'/></td>";
+    if (strpos($nome, 'Hyundai') !== false)
+        $immagine = "<td><img class='logoAuto' src='media/hyundai.png' alt='Logo Hyundai'/></td>";
     return $immagine;
 }
 
-function punti($posizione) {
-    switch($posizione) {
+function punti($posizione)
+{
+    switch ($posizione) {
         case 1:
             return 25;
             break;
@@ -50,3 +52,6 @@ function punti($posizione) {
 function duplicatiArray($array) {
     return count($array) !== count(array_unique($array));
 }
+
+?>
+

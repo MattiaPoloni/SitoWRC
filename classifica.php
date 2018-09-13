@@ -8,7 +8,9 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript">
+
             $(document).ready(function () {
         var url = window.location.href.split("?");
         if (url[1] == "cosa=default" || url[1] == "cosa=piloti") {
@@ -24,13 +26,13 @@
             $('#classificaPilotiImg').attr('colspan',2);
         }
         else {
-            console.log('buzo colspan');
             $('#classificaPilotiImg').attr('colspan',1);
         }
         tid = setTimeout(mycode, 100);
     }
 
     </script>
+    <script src="js/admin.js" type="text/javascript"></script>
     <title>Classifica</title>
 
 </head>
@@ -42,8 +44,8 @@
         include('funzioni.php');
         ?>
         <div class="navigation">
-            <a id="piloti" href="classifica.php?cosa=piloti">Classifica Piloti</a>
-            <a id="costruttori" href="classifica.php?cosa=costruttori">Classifica Costruttori</a>
+            <a id="piloti" href="classifica.php?cosa=piloti" tabindex="9">Classifica Piloti</a>
+            <a id="costruttori" href="classifica.php?cosa=costruttori" tabindex="9">Classifica Costruttori</a>
         </div>
         <?php
         include "connessione.php";
@@ -89,6 +91,7 @@
         ?>
     </div>
 </div>
+<div id="tornaSu"><img src="media/tornaSu.png" alt="Torna Su" /></div>
 <?php include('common/footer.php'); ?>
 </body>
 </html>

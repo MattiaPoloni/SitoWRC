@@ -7,29 +7,32 @@
     <meta name="description" content="Risultati Gare Disputate"/>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+    <link rel="stylesheet" type="text/css" href="css/print.css" media="print"/>
     <title>Gare</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+    <script src="js/admin.js" type="text/javascript"></script>
     <script type="text/javascript">
-    var tid;
-    tid = setTimeout(mycode, 0);
-    function mycode() {
-        if($( window ).width() > 575) {
-            $('#imgAuto').attr('colspan',2);
-        }
-        else {
-            console.log('buzo colspan');
-            $('#imgAuto').attr('colspan',1);
-        }
-        tid = setTimeout(mycode, 100);
-    }
+        var tid;
+        tid = setTimeout(mycode, 0);
 
-    window.onbeforeprint = function() {
-        clearTimeout(tid);
-        $('#imgAuto').attr('colspan',1);
-    };
+        function mycode() {
+            if ($(window).width() > 575) {
+                console.log('test');
+                $('#imgAuto').attr('colspan', 2);
+            }
+            else {
+                console.log('test2');
+                $('#imgAuto').attr('colspan', 1);
+            }
+            tid = setTimeout(mycode, 100);
+        }
 
-</script>
+        window.onbeforeprint = function () {
+            clearTimeout(tid);
+            $('#imgAuto').attr('colspan', 1);
+        };
+
+    </script>
 </head>
 <body class="gara">
 <div class="content">
@@ -54,23 +57,23 @@
         <form action="gare.php" method="post">
             <fieldset>
                 <legend>Selezione Gare</legend>
-                
-                    <?php
-                    echo "<select name='gara'>";
-                    $ris = $connessione->query("SELECT Gara.id, Pista.nome
+
+                <?php
+                echo "<select name='gara' tabindex=\"9\">";
+                $ris = $connessione->query("SELECT Gara.id, Pista.nome
                         FROM Gara INNER JOIN Pista ON Gara.id_pista = Pista.id
                         ORDER BY Gara.id;");
-                    if ($ris) {
-                        while ($row = $ris->fetch_array(MYSQLI_NUM)) {
-                            echo "<option value='$row[0]-$row[1]'";
-                            if ($row[0] == $num_gara) echo " selected='selected'";
-                            echo ">$row[0] - $row[1]</option>";
-                        }
+                if ($ris) {
+                    while ($row = $ris->fetch_array(MYSQLI_NUM)) {
+                        echo "<option value='$row[0]-$row[1]'";
+                        if ($row[0] == $num_gara) echo " selected='selected'";
+                        echo ">$row[0] - $row[1]</option>";
                     }
-                    
-                    echo "</select>";
-                    ?>
-                <input class="button" type="submit" value="Cerca"/>
+                }
+
+                echo "</select>";
+                ?>
+                <input class="button" type="submit" value="Cerca" tabindex="9"/>
             </fieldset>
         </form>
         <?php
@@ -83,10 +86,10 @@
                     ORDER BY posizione_arrivo;";
         $ris = $connessione->query($query);
         if (!$ris) {
-            echo "Errore Database";
+            echo "<h3>Errore Database</h3>";
         } else {
             if (mysqli_num_rows($ris) == 0)
-                echo "Gara Non Ancora Disputata";
+                echo "<h3>Gara Non Ancora Disputata</h3>";
             else {
                 echo "<table summary='Tabella contente i risultati relativi alla gara $nome_gara'><thead>";
                 echo "<tr><th scope='col'>Posizione</th><th scope='col'>Pilota</th><th id='imgAuto' colspan='2' scope='colgroup'>Auto</th><th scope='col'>Punti</th></tr>";
@@ -107,6 +110,7 @@
         ?>
     </div>
 </div>
+<div id="tornaSu"><img src="media/tornaSu.png" alt="Torna Su"/></div>
 <?php include('common/footer.php'); ?>
 </body>
 
