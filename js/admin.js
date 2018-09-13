@@ -85,8 +85,8 @@ $(document).ready(function () {
 	
 	function checkSelects() {
     var $elements = $('[name^="p"]');
-
     $elements.removeClass('invalid');
+    $("#inserisciRisultati").prop("disabled", false);
 
     $elements.each(function () {
         var selectedValue = this.value;
@@ -94,11 +94,17 @@ $(document).ready(function () {
         $elements
             .not(this)
             .filter(function () {
-                console.log([this.value, selectedValue]);
+                //console.log([this.value, selectedValue]);
                 return this.value == selectedValue && selectedValue != 99 && this.value!=99;
             })
             .addClass('invalid');
     });
+    $elements.each(function () {
+1
+        if(this.classList.contains('invalid'))
+            $("#inserisciRisultati").prop("disabled", true);
+
+    })
 }
     var btt = $("#tornaSu");
 
