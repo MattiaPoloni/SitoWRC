@@ -114,7 +114,7 @@
                         endif;
                         ?>
 
-                        <button type="submit" name="save" value="save" id="inserisciRisultati" tabindex="1" disabled="disabled">Carica</button>
+                        <button type="submit" name="save" value="save" id="inserisciRisultati" tabindex="1">Carica</button>
 
 
                         <?php
@@ -153,6 +153,8 @@
                     for ($j = 1; $j < 11; $j++) {
                         $sql .= "INSERT INTO Risultati_Gare (id_gara, id_pilota, posizione_arrivo, punti)
         VALUES ('" . $_POST["gara"] . "','" . (1000 + $j) . "','" . $_POST["p" . $j] . "','" . punti($_POST["p" . $j]) . "');";
+                    if($_POST["p" . $j]!="99")
+                    array_push($vet,$_POST["p" . $j]);
                     }
                     if (!duplicatiArray($vet)) {
                         $q = $connessione->multi_query($sql);
@@ -244,8 +246,8 @@
                 $updateGara = "UPDATE Gara
                         SET giorno = \"" . $_POST["giornoGara"] .
                     "\" WHERE id = " . $_POST["idGara"] . ";";
-                $checker = preg_match('^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$/^', $_POST["giornoGara"]);
-                if($_POST["nomePista"]!="" && $_POST["cittaPista"]!="" && $_POST["statoPista"]!="" && $_POST["tipoPista"] && empty($checker)) {
+                $checker = preg_match('^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$^', $_POST["giornoGara"]);
+                if($_POST["nomePista"]!="" && $_POST["cittaPista"]!="" && $_POST["statoPista"]!="" && $_POST["tipoPista"] && !empty($checker)) {
                     $connessione->query($updatePista);
                     $connessione->query($updateGara);
                 }
@@ -289,10 +291,11 @@
                 $fonte = $_POST["fonte"];
                 $indirizzo = $_POST["indirizzo"];
                 $data = $_POST["data"];
-                $checkLink = preg_match('^/https?:\/\/(www\.)?[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi^',$indirizzo);
+                
                 $query321 = "INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo,data) VALUES ('$titolo','$descrizione','$fonte','$indirizzo','$data');";
                 //$regFonte =
-                if(strlen($titolo) < 150 && strlen($titolo) > 0 && strlen($descrizione ) < 500 && strlen($descrizione) > 0 && strlen($fonte) > 0 && empty($checkLink))
+                
+                if(strlen($titolo) < 150 && strlen($titolo) > 0 && strlen($descrizione ) < 500 && strlen($descrizione) > 0 && strlen($fonte) > 0 && strlen($indirizzo) > 0)
                     $connessione->query("INSERT INTO Notizia(titolo,descrizione,fonte,indirizzo,data) VALUES ('$titolo','$descrizione','$fonte','$indirizzo','$data');");
                 else
                     echo "<h3> Dati non corretti </h3>";
